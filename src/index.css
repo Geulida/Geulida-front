@@ -1,3 +1,4 @@
+/* font */
 @font-face {
   font-family: 'LeferiPoint-WhiteObliqueA';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-WhiteObliqueA.woff') format('woff');
@@ -12,12 +13,29 @@
   font-style: normal;
 }
 
+/* css reset */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* global css */
 body {
   margin: 0;
   font-family: 'LeferiPoint-WhiteObliqueA';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(117.59deg, #a49df6 19.36%, #aadce7 93.45%);
+}
+
+input {
+  font-family: 'Pretendard-Regular';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 code {
