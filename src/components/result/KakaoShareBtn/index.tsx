@@ -16,7 +16,7 @@ function KakaoShareBtn() {
     <>
       <button type='submit' className='kakao-share-button' onClick={shareKakao}>
         <div>
-          <img src='kakao-logo.png' alt='kakao-share-icon' />
+          <img src='/image/kakao-logo.png' alt='kakao-share-icon' />
         </div>
       </button>
     </>
