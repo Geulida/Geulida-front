@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './resultPage.module.scss';
-import KakaoShareBtn from '../../component/result/KakaoShareBtn';
-import Layout from '../../component/common/Layout';
+import KakaoShareBtn from '../../components/result/KakaoShareBtn';
+import Layout from '../../components/common/Layout';
 
 function ResultPage() {
   return (
