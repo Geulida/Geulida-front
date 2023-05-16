@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './button.module.scss';
 
-type Props = {
+interface Props {
   onClick: () => void;
   value: string;
 }
