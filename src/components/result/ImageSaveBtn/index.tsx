@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 
-function ImageSaveBtn() {}
+function ImageSaveBtn() {
+  return <div></div>;
+}
 
 export default ImageSaveBtn;
