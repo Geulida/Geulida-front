@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './chatPage.module.scss';
 import Layout from '../../components/common/Layout';
+import { ReactComponent as Send } from 'assets/Send.svg';
 
 function ResultPage() {
   const [count, setCount] = useState<number>(0);
@@ -58,7 +59,7 @@ function ResultPage() {
               className={styles.button} 
               onClick={(event) => handleClick()}
             >
-              <img className={styles.buttonImg} src='send.svg'/>
+              <Send />
             </button>
           </div>
         </div>
