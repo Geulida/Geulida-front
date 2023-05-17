@@ -34,22 +34,27 @@ function ChatPage() {
     }
   }
 
+  // 진행도 설정
   useEffect(() => {
-    // 진행도 설정
     if (count < maxCount) {
       setCount(userMsg.length);
     } 
+  }, [count, userMsg.length]);
 
-    // AI의 응답 생성 및 추가
+  // AI의 응답 생성 및 추가
+  useEffect(() => {
     if (userMsg.length === aiMsg.length && aiMsg.length > 0) {
       setIsDisabled(true);
       // 임시로 2초 후에 보내기 (disabled 확인용)
       setTimeout(() => {
-        const newAiMessage: Message = {
-          id: aiMsg.length + 1,
-          content: generateAiResponse()
-        };
-        setAiMsg([...aiMsg, newAiMessage]);
+        setAiMsg(() => {
+          const newAiMessage = [...aiMsg];
+          newAiMessage.push({
+            id: aiMsg.length + 1,
+            content: generateAiResponse()
+          });
+          return newAiMessage;
+        });
 
         // 마지막 AI 응답을 받은 후 입력창 막기
         if (maxCount <= aiMsg.length) {
@@ -60,18 +65,16 @@ function ChatPage() {
 
       }, 2000);
     }
-  }, [userMsg]);
+  }, [userMsg, aiMsg]);
   
   // 페이지가 시작되면 AI의 첫 번째 대화를 생성하여 보여줌
   useEffect(() => {
-    if (aiMsg.length === 0 && userMsg.length === 0) {
-      const firstAiMessage: Message = {
-        id: 1,
-        content: "안녕 난 첫번째 메시지야"
-      };
-      setAiMsg([firstAiMessage]);
-      setIsDisabled(false);
-    }
+    const firstAiMessage: Message = {
+      id: 1,
+      content: "안녕 난 첫번째 메시지야"
+    };
+    setAiMsg([firstAiMessage]);
+    setIsDisabled(false);
   }, []);
 
   // AI의 응답 받아오기
