@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-
-import Layout from '../../components/common/Layout';
+import { ReactComponent as RightArrow } from 'assets/RightArrow.svg';
+import { ReactComponent as LeftArrow } from 'assets/LeftArrow.svg';
 import styles from './painterPickPage.module.scss';
 
 // interface Props {
@@ -27,8 +26,8 @@ function PainterPickPage() {
 
   const handleNext = () => {
     const getAnswerData = JSON.parse(sessionStorage.getItem('answerData') || '');
-    const answerData = { ...getAnswerData, pickedPainter: painterName };
-    sessionStorage.setItem('answerData', JSON.stringify(answerData));
+    // const answerData = { ...getAnswerData, pickedPainter: painterName };
+    // sessionStorage.setItem('answerData', JSON.stringify(answerData));
     /**
      * ! 임시 네비게이트 : 챗 페이지 생성되면 바꿔야함
      */
@@ -36,28 +35,26 @@ function PainterPickPage() {
   };
 
   return (
-    <Layout>
-      <div className={styles.container}>
-        <button className={styles.prevButton} onClick={() => navigate(-1)}>
-          <FaArrowLeft className={styles.arrowLeft} />
-        </button>
-        <div className={styles.painterPickerWrapper} ref={PainterPickerRef}>
-          <div
-            className={styles.painterPickerCircle}
-            style={{
-              backgroundImage: `url(/image/test.jpeg)`,
-            }}
-          />
+    <div className={styles.container}>
+      <button className={styles.prevButton} onClick={() => navigate(-1)}>
+        <LeftArrow className={styles.arrowLeft} />
+      </button>
+      <div className={styles.painterPickerWrapper} ref={PainterPickerRef}>
+        <div
+          className={styles.painterPickerCircle}
+          style={{
+            backgroundImage: `url(/image/test.jpeg)`,
+          }}
+        />
 
-          <div className={styles.question2}>Q2. 원하는 화풍을 선택해주세요</div>
-          <p className={styles.notification}>※ 다음으로 넘어가면 대화가 시작됩니다.</p>
-        </div>
-
-        <button className={styles.nextButton} onClick={handleNext}>
-          <FaArrowRight className={styles.arrowRight} />
-        </button>
+        <div className={styles.question2}>Q2. 원하는 화풍을 선택해주세요</div>
+        <p className={styles.notification}>※ 다음으로 넘어가면 대화가 시작됩니다.</p>
       </div>
-    </Layout>
+
+      <button className={styles.nextButton} onClick={handleNext}>
+        <RightArrow className={styles.arrowRight} />
+      </button>
+    </div>
   );
 }
 
