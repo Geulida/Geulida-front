@@ -1,9 +1,6 @@
 const { Kakao } = window;
 
-export const shareKakao = (description, imageUrl) => {
-  description = '여기에는 그 한 줄 요약 녀석이 들어갑니다.';
-  imageUrl =
-    'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png';
+export const shareKakao = (description: string, imageUrl: string) => {
   if (Kakao.isInitialized()) {
     Kakao.Share.sendDefault({
       objectType: 'feed',

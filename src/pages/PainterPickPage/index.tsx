@@ -3,14 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { ReactComponent as RightArrow } from 'assets/RightArrow.svg';
 import { ReactComponent as LeftArrow } from 'assets/LeftArrow.svg';
 import styles from './painterPickPage.module.scss';
-
-// interface Props {
-//   painterName: string;
-// }
+import artists from 'assets/painterData.json';
 
 function PainterPickPage() {
   const navigate = useNavigate();
   const PainterPickerRef = useRef<HTMLDivElement>(null);
+  const [painterName, setPainterName] = useState<string>('');
+  const [imageUrl, setImageUrl] = useState<string>('');
 
   useEffect(() => {
     /**
@@ -26,12 +25,26 @@ function PainterPickPage() {
 
   const handleNext = () => {
     const getAnswerData = JSON.parse(sessionStorage.getItem('answerData') || '');
-    // const answerData = { ...getAnswerData, pickedPainter: painterName };
-    // sessionStorage.setItem('answerData', JSON.stringify(answerData));
+    const answerData = { ...getAnswerData, pickedPainter: painterName };
+    sessionStorage.setItem('answerData', JSON.stringify(answerData));
     /**
      * ! 임시 네비게이트 : 챗 페이지 생성되면 바꿔야함
      */
     navigate('/result');
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedPainter = e.target.value;
+    setPainterName(selectedPainter);
+    getImageUrlByName(selectedPainter);
+  };
+
+  const getImageUrlByName = (selectedPainter: string) => {
+    const pickOneArtist = artists.find((artist) => artist.name === selectedPainter);
+    if (pickOneArtist) {
+      setImageUrl(pickOneArtist.imageUrl);
+      console.log(painterName);
+    }
   };
 
   return (
@@ -43,12 +56,23 @@ function PainterPickPage() {
         <div
           className={styles.painterPickerCircle}
           style={{
-            backgroundImage: `url(/image/test.jpeg)`,
+            backgroundImage: `url(${imageUrl})`,
           }}
         />
 
         <div className={styles.question2}>Q2. 원하는 화풍을 선택해주세요</div>
         <p className={styles.notification}>※ 다음으로 넘어가면 대화가 시작됩니다.</p>
+      </div>
+
+      <div>
+        <select onChange={(e) => handleChange(e)} value={painterName}>
+          <option value=''>선택해주세요</option>
+          {artists.map((artist) => (
+            <option key={artist._id} value={artist.name}>
+              {artist.name}
+            </option>
+          ))}
+        </select>
       </div>
 
       <button className={styles.nextButton} onClick={handleNext}>
