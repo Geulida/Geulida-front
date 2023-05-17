@@ -32,7 +32,7 @@ function ColorPickPage() {
 
   const handleNext = () => {
     const answerData = {
-      pickedColorHex: colorPickerHex,
+      color: colorPickerHex,
     };
 
     sessionStorage.setItem('answerData', JSON.stringify(answerData));

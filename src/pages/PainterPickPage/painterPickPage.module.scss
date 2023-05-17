@@ -42,6 +42,17 @@
   color: gray;
   margin-top: 10px;
 }
+.painterPickerDropDownWrapper {
+  display: flex;
+  z-index: 1;
+}
+.painterPickerDropDown {
+  width: 300px;
+  height: 50px;
+
+  background: #ffffff;
+  border-radius: 10px;
+}
 
 .nextButton {
   display: flex;
