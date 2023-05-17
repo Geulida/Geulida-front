@@ -97,7 +97,7 @@ function ChatPage() {
 
         <div className={styles.messageContainer}>
           {aiMsg.map((message, index) => (
-            <div key={message.id} className={styles.msgWraaper}>
+            <div key={message.id} className={styles.msgWrapper}>
               <p>&#x1F916; 그리다 AI</p>
               <div className={styles.aiMsg}>{message.content}</div>
               {userMsg[index] && (
