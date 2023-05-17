@@ -10,6 +10,7 @@
 
 .chat__container {
   height: 680px;
+  margin-left: 78px;
 }
 
 .countText {
@@ -35,4 +36,35 @@
   height: 10px;
   background-color: #186CE9;
   border-radius: 100px; 
+}
+
+.message__container {
+  width: 1400px;
+  height: 90%;
+}
+
+.input__cotainer {
+  display: flex;
+}
+
+.input {
+  width: 1250px;
+  height: 50px;
+  padding-left: 20px;
+
+  border-radius: 6px 0 0 6px;
+  outline: none;
+}
+
+.button {
+  height: 50px;
+  padding: 10px;
+  background-color: white;
+
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+}
+
+.buttonImg {
+  width: 32px;
 }
