@@ -1,0 +1,65 @@
+/* font */
+@font-face {
+  font-family: 'S-CoreDream-3Light';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* css reset */
+* {
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  font-family: 'S-CoreDream-3Light';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+:root {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  cursor: default;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  tab-size: 4;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* global css */
+body {
+  background: linear-gradient(135deg, #8a8bf0 20%, #a8ebf0);
+}
+
+header {
+  width: 350px;
+  height: 100vh;
+  display: flex;
+  flex-shrink: 0;
+}
