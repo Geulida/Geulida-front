@@ -42,17 +42,6 @@
   color: gray;
   margin-top: 10px;
 }
-.painterPickerDropDownWrapper {
-  display: flex;
-  z-index: 1;
-}
-.painterPickerDropDown {
-  width: 300px;
-  height: 50px;
-
-  background: #ffffff;
-  border-radius: 10px;
-}
 
 .nextButton {
   display: flex;
@@ -90,4 +79,70 @@
 
 .prevButton:hover svg {
   stroke: #a8ebf0;
+}
+
+/* 드롭다운 메뉴 */
+
+.painterPickerDropDownWrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-items: center;
+  z-index: 1;
+  cursor: pointer;
+
+  // font-size: 28px;
+}
+.painterPickerDropDown {
+  width: 300px;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+
+  justify-content: space-around;
+
+  font-size: 20px;
+  font-weight: bold;
+
+  background: #ffffff;
+  border-radius: 10px;
+  border: 5px solid #a2cafd;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.selectOptions {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  margin-top: 10px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+
+  font-size: 20px;
+  overflow: auto;
+
+  background-color: #a2cafd;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.open {
+  max-height: 200px; /* 선택한 크기로 조정 */
+  transition: max-height 0.3s ease;
+}
+.selectOption {
+  padding: 10px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.selectOption:last-child {
+  border-bottom: none;
 }

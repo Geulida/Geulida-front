@@ -32,11 +32,11 @@ const CustomSelect = ({ value, onClick }: Props) => {
 
   return (
     <div className={styles.painterPickerDropDownWrapper} ref={painterPickRef}>
-      <div className={styles.painterPickerDropDown} onClick={() => setIsOpen((prev) => !prev)}>
+      <div className={`${styles.painterPickerDropDown} ${isOpen ? styles.open : styles.painterPickerDropDown}`} onClick={() => setIsOpen((prev) => !prev)}>
         {!value ? '선택해주세요' : value}
       </div>
       {isOpen && (
-        <ul className={styles.selectOptions}>
+        <ul className={`${styles.selectOptions} ${styles.open}`}>
           {artists.map((option) => (
             <li key={option._id} className={styles.selectOption} onClick={handleOptionClick} value={option.name}>
               {option.name}
