@@ -5,7 +5,7 @@ function ResultPage() {
   return (
     <div>
       <div className={styles.text}>ResultPage입니다!!!</div>
-      {/* <KakaoShareBtn /> */}
+      <KakaoShareBtn />
     </div>
   );
 }

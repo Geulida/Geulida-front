@@ -2,8 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChromePicker, ColorResult, RGBColor } from 'react-color';
 import styles from './colorPickPage.module.scss';
-import { FaArrowRight } from 'react-icons/fa';
-import Layout from '../../components/common/Layout';
+import { ReactComponent as RightArrow } from 'assets/RightArrow.svg';
 
 function ColorPickPage() {
   const [isShown, setIsShown] = useState<boolean>(false);
@@ -33,7 +32,7 @@ function ColorPickPage() {
 
   const handleNext = () => {
     const answerData = {
-      pickedColorHex: colorPickerHex,
+      color: colorPickerHex,
     };
 
     sessionStorage.setItem('answerData', JSON.stringify(answerData));
@@ -49,29 +48,29 @@ function ColorPickPage() {
   }, []);
 
   return (
-    <Layout>
-      <div className={styles.container}>
-        <div className={styles.left}></div>
-        <div className={styles.colorPickerWrapper} ref={colorPickerRef}>
-          {isShown && <ChromePicker className={styles.colorPicker} onChange={handleChangeColorPicker} color={colorPickerHex} />}
-          <div
-            className={styles.colorPickerCircle}
-            style={{
-              backgroundColor: `rgba(${r},${g},${b},${a})`,
-            }}
-            onClick={() => setIsShown((prev) => !prev)}
-          >
-            Click Me!
-          </div>
-
-          <div className={styles.question1}>Q1. 원하는 컬러를 선택해주세요</div>
+    <div className={styles.container}>
+      <div className={styles.left}></div>
+      <div className={styles.colorPickerWrapper} ref={colorPickerRef}>
+        {isShown && <ChromePicker className={styles.colorPicker} onChange={handleChangeColorPicker} color={colorPickerHex} />}
+        <div
+          className={styles.colorPickerCircle}
+          style={{
+            backgroundColor: `rgba(${r},${g},${b},${a})`,
+          }}
+          onClick={() => setIsShown((prev) => !prev)}
+        >
+          Click Me!
         </div>
 
-        <button className={styles.nextButton} onClick={handleNext}>
-          <FaArrowRight className={styles.arrowRight} />
-        </button>
+        <div className={styles.question1}>
+          Q1. 원하는 <span style={{ color: colorPickerHex }}>컬러</span>를 선택해주세요
+        </div>
       </div>
-    </Layout>
+
+      <button className={styles.nextButton} onClick={handleNext}>
+        <RightArrow className={styles.arrowRight} />
+      </button>
+    </div>
   );
 }
 
