@@ -5,11 +5,11 @@ import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import Layout from '../../components/common/Layout';
 import styles from './painterPickPage.module.scss';
 
-interface Props {
-  painterName: string;
-}
+// interface Props {
+//   painterName: string;
+// }
 
-function PainterPickPage({ painterName }: Props) {
+function PainterPickPage() {
   const navigate = useNavigate();
   const PainterPickerRef = useRef<HTMLDivElement>(null);
 
