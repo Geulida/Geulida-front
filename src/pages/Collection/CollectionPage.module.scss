@@ -13,33 +13,3 @@
   flex-shrink: 0;
   flex-wrap: wrap;
 }
-
-.picDiv {
-  width: 400px;
-  height: 400px;
-  margin: 0 0 120px 0;
-  display: inline-block;
-  border-radius: 1rem;
-  cursor: pointer;
-  overflow: hidden;
-}
-.pic {
-  width: 400px;
-  height: 400px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: inherit;
-
-  &:hover {
-    transform: scale(1.1);
-    transition: transform 0.3s ease-out;
-  }
-}
-
-.picDescription {
-  width: 400px;
-  height: 400px;
-  border-radius: inherit;
-  background-color: aliceblue;
-}
