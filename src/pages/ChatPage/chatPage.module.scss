@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  margin: 0 40px;
 }
 
 .countContainer {
@@ -36,6 +38,8 @@
   height: 10px;
   background-color: #8a8bf0;
   border-radius: 100px; 
+
+  transition: all 0.5s;
 }
 
 .messageContainer {
