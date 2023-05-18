@@ -1,11 +1,18 @@
 import styles from './resultPage.module.scss';
-import KakaoShareBtn from '../../components/result/KakaoShareBtn';
+import ResultPageBtn from 'components/result/ResultPageBtn';
 
 function ResultPage() {
   return (
-    <div>
-      <div className={styles.text}>ResultPage입니다!!!</div>
-      <KakaoShareBtn />
+    <div className={styles.resultPageContainer}>
+      <section className={styles.resultContents}>
+        <div className={styles.imageWrapper}>
+          <img src='/image/test.jpeg' />
+        </div>
+        <div className={styles.resultContentsText}></div>
+      </section>
+      <section className={styles.resultBtnContainer}>
+        <ResultPageBtn />
+      </section>
     </div>
   );
 }

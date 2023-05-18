@@ -140,7 +140,10 @@
 }
 .selectOption {
   padding: 10px;
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px dotted #eaeaea;
+  &:hover {
+    background-color: #88bafa;
+  }
 }
 
 .selectOption:last-child {
