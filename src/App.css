@@ -54,8 +54,22 @@ table {
 }
 
 /* global css */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 body {
-  background: linear-gradient(135deg, #8a8bf0 20%, #a8ebf0);
+  background: linear-gradient(45deg, #5ec5ce, #5991d1, #e5bdc6, #80bccc, #80a1cc, #e5bdc6, #80bccc);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
 }
 
 header {
