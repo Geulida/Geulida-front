@@ -6,6 +6,7 @@ import ColorPickPage from './pages/ColorPickPage';
 import PainterPickPage from './pages/PainterPickPage';
 import CollectionPage from './pages/Collection/CollectionPage';
 import Navi from './components/common/Navi';
+import ChatPage from './pages/ChatPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path='/result' element={<ResultPage />} />
             <Route path='/color-pick' element={<ColorPickPage />} />
             <Route path='/painter-pick' element={<PainterPickPage />} />
+            <Route path='/chat' element={<ChatPage />}></Route>
           </Routes>
         </div>
       </BrowserRouter>
