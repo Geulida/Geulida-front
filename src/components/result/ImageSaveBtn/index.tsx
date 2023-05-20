@@ -1,21 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styles from './imageSaveBtn.module.scss';
 
+import { ReactComponent as Download } from 'assets/Download.svg';
+
 // sessionStorage에서 imageUrl가져와야함
 function ImageSaveBtn() {
-  // return (
-  //   <div>
-  //     <div className={styles.saveBtn}>
-  //       <a
-  //         href='https://mblogthumb-phinf.pstatic.net/MjAyMDA5MjhfMzMg/MDAxNjAxMzA1MDc3MzYy.N4852y666UInf-F-doir6Imv3DpeFHzbaIcVLJReXkEg.3etDrj9-iojyIsGVxCDS9bqFVbCi-emmkP4_SVooWzog.JPEG.jrkimceo/Dancers_(c.1878)_By_Edgar_Degas,_from_Paris_(1834.jpg?type=w800'
-  //         download
-  //       >
-  //         <button>이미지 원본 다운로드</button>
-  //       </a>
-  //     </div>
-  //   </div>
-  // );
-  const [imageUrl, setImageUrl] = useState('');
+  const [imageUrl, setImageUrl] = useState<string>('https://cdn.veritas-a.com/news/photo/old/2/admin_1198640645.jpg');
+  // const imageUrl = 'https://cdn.veritas-a.com/news/photo/old/2/admin_1198640645.jpg';
 
   // useEffect(() => {
   // 이미지 URL을 sessionStorage에서 가져와야 함
@@ -23,21 +14,37 @@ function ImageSaveBtn() {
   //   setImageUrl(storedImageUrl);
   // }, []);
 
-  const handleDownload = () => {
-    if (imageUrl) {
+  const handleDownload = async () => {
+    try {
+      const response = await fetch(imageUrl);
+      const blob = await response.blob();
+
+      // 이미지 형식에 따라 MIME 타입과 확장자를 결정
+      const mimeType = response.headers.get('content-type');
+      const extension = mimeType ? mimeType.split('/')[1] : 'jpg';
+
+      // Blob 객체를 URL로 변환
+      const url = URL.createObjectURL(blob);
+
+      // 다운로드 링크 생성
       const link = document.createElement('a');
-      link.href = imageUrl;
-      link.download = 'image.jpg';
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
+      link.href = url;
+      link.download = `Geulida.${extension}`;
+
+      // 다운로드 링크를 클릭하여 다운로드
       link.click();
+
+      // 사용이 완료된 URL 객체 해제
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('이미지 다운로드에 실패하였습니다.', error);
     }
   };
 
   return (
     <div>
       <div className={styles.saveBtn}>
-        <button onClick={handleDownload}>이미지 원본 다운로드</button>
+        <Download onClick={handleDownload} />
       </div>
     </div>
   );

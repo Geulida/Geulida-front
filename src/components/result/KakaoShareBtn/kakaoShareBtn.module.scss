@@ -1,9 +1,9 @@
-.saveBtn {
-  cursor: pointer;
-
+.kakaoShareBtn {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 12px 0 0 4.5px;
+
   width: 90px;
   height: 90px;
 
@@ -16,8 +16,8 @@
     box-shadow: 1px 1.5px 4px rgba(0, 0, 0, 0.2);
   }
 }
-
-.saveBtn svg {
-  stroke: white;
+.kakaoIcon {
+  width: 60px;
+  height: 60px;
   text-align: center;
 }

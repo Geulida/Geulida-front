@@ -1,9 +1,10 @@
-.saveBtn {
+.gallerySaveBtn {
   cursor: pointer;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
   width: 90px;
   height: 90px;
 
@@ -17,7 +18,7 @@
   }
 }
 
-.saveBtn svg {
+.gallerySaveBtn svg {
   stroke: white;
   text-align: center;
 }
