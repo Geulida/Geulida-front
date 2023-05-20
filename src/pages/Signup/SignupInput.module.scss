@@ -1,0 +1,35 @@
+.label {
+  display: block;
+  text-align: left;
+  margin-left: 20px;
+  margin-bottom: 5px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  outline: none;
+}
+
+.input {
+  box-sizing: border-box;
+  width: 400px;
+  height: 70px;
+
+  border: 2px solid #ffffff;
+  border-radius: 4rem;
+
+  color: #ffffff;
+  font-size: 18px;
+  background-color: transparent;
+  outline: none;
+  padding-left: 30px;
+  transition: all 0.3s ease;
+  &:focus {
+    outline: none;
+    background-color: rgba($color: #ffffff, $alpha: 0.85);
+    color: #80a1cc;
+  }
+
+  &::placeholder {
+    color: #eeeeee;
+  }
+}
