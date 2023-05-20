@@ -25,10 +25,12 @@ function PainterPickPage() {
     const getAnswerData = JSON.parse(sessionStorage.getItem('answerData') || '');
     const answerData = { ...getAnswerData, style: painterName };
     sessionStorage.setItem('answerData', JSON.stringify(answerData));
-    /**
-     * ! 임시 네비게이트 : 챗 페이지 생성되면 바꿔야함
-     */
-    navigate('/result');
+
+    if (!painterName) {
+      alert('원하는 화풍을 선택해주세요');
+      return;
+    }
+    navigate('/chat');
   };
 
   const handleChange = (e: React.MouseEvent<HTMLLIElement>) => {
