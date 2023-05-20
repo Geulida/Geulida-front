@@ -15,10 +15,10 @@
   &:focus {
     outline: none;
     background-color: rgba($color: #ffffff, $alpha: 0.85);
-    color: #5991d1;
+    color: #80a1cc;
   }
 
   &::placeholder {
-    color: #ffffff;
+    color: #eeeeee;
   }
 }

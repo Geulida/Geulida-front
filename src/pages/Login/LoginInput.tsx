@@ -7,7 +7,7 @@ interface Props {
 
 function LoginInput({ type, placeholder }: Props) {
   return (
-    <div className={styles.input__container}>
+    <div>
       <input className={styles.input} type={type} placeholder={placeholder} required />
     </div>
   );
