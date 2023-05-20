@@ -59,7 +59,7 @@
 }
 
 .nextButton:hover svg {
-  stroke: #8a8bf0;
+  stroke: #e5bdc6;
 }
 
 .prevButton {
@@ -78,7 +78,7 @@
 }
 
 .prevButton:hover svg {
-  stroke: #a8ebf0;
+  stroke: #e5bdc6;
 }
 
 /* 드롭다운 메뉴 */
@@ -91,9 +91,8 @@
   justify-items: center;
   z-index: 1;
   cursor: pointer;
-
-  // font-size: 28px;
 }
+
 .painterPickerDropDown {
   width: 300px;
   height: 50px;
@@ -110,8 +109,7 @@
 
   background: #ffffff;
   border-radius: 10px;
-  border: 5px solid #a2cafd;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: 5px solid #e5bdc6;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -121,28 +119,35 @@
   width: 100%;
 
   margin-top: 10px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
+  height: 200px;
 
   font-size: 20px;
-  overflow: auto;
-
-  background-color: #a2cafd;
+  overflow-y: scroll;
+  background-color: #e5bdc6;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   z-index: 2;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    margin-right: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #e69dad;
+    border-radius: 25px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+  }
 }
 
-.open {
-  max-height: 200px; /* 선택한 크기로 조정 */
-  transition: max-height 0.3s ease;
-}
 .selectOption {
   padding: 10px;
   border-bottom: 1px dotted #eaeaea;
   &:hover {
-    background-color: #88bafa;
+    background-color: #e69dad;
   }
 }
 

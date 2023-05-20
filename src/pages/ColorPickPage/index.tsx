@@ -6,7 +6,7 @@ import { ReactComponent as RightArrow } from 'assets/RightArrow.svg';
 
 function ColorPickPage() {
   const [isShown, setIsShown] = useState<boolean>(false);
-  const [colorPickerHex, setColorPickerHex] = useState<string>('#ffffff');
+  const [colorPickerHex, setColorPickerHex] = useState<string>('');
   const [colorPickerRGB, setColorPickerRGB] = useState({
     r: 255,
     g: 255,
@@ -36,6 +36,10 @@ function ColorPickPage() {
     };
 
     sessionStorage.setItem('answerData', JSON.stringify(answerData));
+    if (!colorPickerHex) {
+      alert('원하는 컬러를 선택해주세요');
+      return;
+    }
     navigate('/painter-pick');
   };
 
