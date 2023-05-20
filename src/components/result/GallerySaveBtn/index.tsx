@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 
-function GallerySaveBtn() {}
+function GallerySaveBtn() {
+  return <div></div>;
+}
 
 export default GallerySaveBtn;

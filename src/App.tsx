@@ -2,10 +2,13 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import styles from './App.module.scss';
 import ResultPage from './pages/ResultPage';
+import ColorPickPage from './pages/ColorPickPage';
+import PainterPickPage from './pages/PainterPickPage';
 import CollectionPage from './pages/Collection/CollectionPage';
 import Navi from './components/common/Navi';
 import Login from 'pages/Login/Login';
 import Signup from 'pages/Signup/Signup';
+import ChatPage from './pages/ChatPage';
 
 function App() {
   return (
@@ -20,6 +23,9 @@ function App() {
             <Route path='/result' element={<ResultPage />} />
             <Route path='/collection' element={<CollectionPage />} />
             <Route path='/signup' element={<Signup />} />
+            <Route path='/color-pick' element={<ColorPickPage />} />
+            <Route path='/painter-pick' element={<PainterPickPage />} />
+            <Route path='/chat' element={<ChatPage />}></Route>
           </Routes>
         </div>
       </BrowserRouter>
