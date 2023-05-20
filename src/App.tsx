@@ -6,6 +6,8 @@ import ColorPickPage from './pages/ColorPickPage';
 import PainterPickPage from './pages/PainterPickPage';
 import CollectionPage from './pages/Collection/CollectionPage';
 import Navi from './components/common/Navi';
+import Login from 'pages/Login/Login';
+import Signup from 'pages/Signup/Signup';
 import ChatPage from './pages/ChatPage';
 
 function App() {
@@ -17,7 +19,10 @@ function App() {
         </header>
         <div className={styles.main}>
           <Routes>
+            <Route path='/' element={<Login />} />
             <Route path='/result' element={<ResultPage />} />
+            <Route path='/collection' element={<CollectionPage />} />
+            <Route path='/signup' element={<Signup />} />
             <Route path='/color-pick' element={<ColorPickPage />} />
             <Route path='/painter-pick' element={<PainterPickPage />} />
             <Route path='/chat' element={<ChatPage />}></Route>

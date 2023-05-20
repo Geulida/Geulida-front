@@ -1,10 +1,15 @@
 .container {
-  height: 1700px;
+  display: flex;
+  flex-direction: column;
 }
 
 .main {
-  width: 90%;
+  width: 93%;
   height: 100%;
-  margin-top: 20px;
-  background-color: rgba($color: #ffffff, $alpha: 0.5);
+  margin-top: 50px;
+  // background-color: rgba($color: #ffffff, $alpha: 0.5);
+  display: flex;
+  justify-content: space-between;
+  flex-shrink: 0;
+  flex-wrap: wrap;
 }
