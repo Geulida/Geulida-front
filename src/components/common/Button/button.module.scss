@@ -11,12 +11,12 @@
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 0.4em;
-  background: rgba(0, 0, 0, 0.3);
+  background: #e5bdc6;
 
   transition: all 0.5s ease;
 
   &:hover {
-    color: #5991d1;
+    color: #80a1cc;
     background-color: rgba($color: #ffffff, $alpha: 0.75);
   }
 }

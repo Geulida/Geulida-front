@@ -5,6 +5,7 @@ import ResultPage from './pages/ResultPage';
 import CollectionPage from './pages/Collection/CollectionPage';
 import Navi from './components/common/Navi';
 import Login from 'pages/Login/Login';
+import Signup from 'pages/Signup/Signup';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path='/' element={<Login />} />
             <Route path='/result' element={<ResultPage />} />
             <Route path='/collection' element={<CollectionPage />} />
+            <Route path='/signup' element={<Signup />} />
           </Routes>
         </div>
       </BrowserRouter>
