@@ -59,7 +59,7 @@
 }
 
 .nextButton:hover svg {
-  stroke: #8a8bf0;
+  stroke: #e5bdc6;
 }
 
 .prevButton {
@@ -78,7 +78,7 @@
 }
 
 .prevButton:hover svg {
-  stroke: #a8ebf0;
+  stroke: #e5bdc6;
 }
 
 /* 드롭다운 메뉴 */
@@ -110,8 +110,7 @@
 
   background: #ffffff;
   border-radius: 10px;
-  border: 5px solid #a2cafd;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: 5px solid #e5bdc6;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -128,7 +127,7 @@
   font-size: 20px;
   overflow: auto;
 
-  background-color: #a2cafd;
+  background-color: #e5bdc6;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   z-index: 2;
@@ -142,7 +141,7 @@
   padding: 10px;
   border-bottom: 1px dotted #eaeaea;
   &:hover {
-    background-color: #88bafa;
+    background-color: #e7abb8;
   }
 }
 
