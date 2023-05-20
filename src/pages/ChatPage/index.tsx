@@ -14,6 +14,7 @@ function ChatPage() {
   const [aiMsg, setAiMsg] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   // 최대 대화 가능 횟수
   const maxCount = 10;
@@ -21,17 +22,25 @@ function ChatPage() {
   // 진행bar 동적으로 width 설정
   const progressBarWidth = `${(count / maxCount) * 600}px`;
 
-  // 보내기 버튼 클릭 이벤트
+  // 유저 메세지 보내기 버튼 클릭 이벤트
   function handleClick() {
-    setIsDisabled(true);
     if (inputValue.trim() !== '' && count < maxCount) {
-      const newMessage: Message = {
-        id: userMsg.length + 1,
-        content: inputValue
-      };
-      setUserMsg([...userMsg, newMessage]);
+      setIsDisabled(true);
+      setUserMsg(() => {
+        const newUserMessage = [...userMsg];
+        newUserMessage.push({
+          id: userMsg.length + 1,
+          content: inputValue
+        });
+        return newUserMessage;
+      })
       setInputValue('');
     }
+  }
+
+  // AI의 응답 받아오기
+  function generateAiResponse() {
+    return "AI 대답을 여기에 저장해서 보여주기!!";
   }
 
   // 진행도 설정
@@ -77,10 +86,15 @@ function ChatPage() {
     setIsDisabled(false);
   }, []);
 
-  // AI의 응답 받아오기
-  function generateAiResponse() {
-    return "AI 대답을 여기에 저장해서 보여주기!!";
-  }
+  // 스크롤 위치 최신 대화에 맞도록
+  useEffect(() => {
+    console.log('스크롤 발생');
+      // 현재 스크롤 위치 === scrollRef.current.scrollTop
+      // 스크롤 길이 === scrollRef.current.scrollHeight
+      if (scrollRef.current) {
+        scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+      }
+  }, [userMsg, aiMsg]);
 
   return (
     <Layout>
@@ -95,17 +109,17 @@ function ChatPage() {
 
         <div className={styles.chatContainer}>
 
-        <div className={styles.messageContainer}>
-          {aiMsg.map((message, index) => (
-            <div key={message.id} className={styles.msgWrapper}>
-              <p>&#x1F916; 그리다 AI</p>
-              <div className={styles.aiMsg}>{message.content}</div>
-              {userMsg[index] && (
-                <div className={styles.userMsg}>{userMsg[index].content}</div>
-              )}
-            </div>
-          ))}
-        </div>
+          <div className={styles.messageContainer} ref={scrollRef}>
+            {aiMsg.map((message, index) => (
+              <div key={message.id} className={styles.msgWrapper}>
+                <p>&#x1F916; 그리다 AI</p>
+                <div className={styles.aiMsg}>{message.content}</div>
+                {userMsg[index] && (
+                  <div className={styles.userMsg}>{userMsg[index].content}</div>
+                )}
+              </div>
+            ))}
+          </div>
 
           <div className={styles.inputCotainer}>
             <input
