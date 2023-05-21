@@ -60,13 +60,14 @@ function ChatPage() {
       setIsDisabled(true);
       // 임시로 2초 후에 보내기 (disabled 확인용)
       setTimeout(() => {
-        setAiMsg((prevAiMessages) => [
-          ...prevAiMessages,
-          {
-            id: prevAiMessages.length + 1,
+        setAiMsg(() => {
+          const newAiMessage = [...aiMsg];
+          newAiMessage.push({
+            id: aiMsg.length + 1,
             content: generateAiResponse()
-          }
-        ]);
+          });
+          return newAiMessage;
+        });
 
         // 마지막 AI 응답을 받은 후 입력창 막기
         if (maxCount <= aiMsg.length) {
