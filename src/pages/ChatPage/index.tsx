@@ -21,6 +21,13 @@ function ChatPage() {
   // 최대 대화 가능 횟수
   const maxCount = 10;
 
+  // 진행도 설정
+  useEffect(() => {
+    if (count < maxCount) {
+      setCount(userMsg.length);
+    } 
+  }, [count, userMsg.length]);
+
   // 유저 메세지 보내기 버튼 클릭 이벤트
   function handleClick() {
     if (inputValue.trim() !== '' && count < maxCount) {
@@ -89,9 +96,7 @@ function ChatPage() {
       <div className={styles.mainContainer}>
 
         <ProgressBar 
-          length={userMsg.length} 
           count={count} 
-          setCount={setCount} 
           maxCount={maxCount}/>
 
         <div className={styles.chatContainer}>
