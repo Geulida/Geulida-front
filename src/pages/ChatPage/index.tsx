@@ -3,8 +3,9 @@ import styles from './chatPage.module.scss';
 import Layout from 'components/common/Layout';
 import { ReactComponent as Send } from 'assets/Send.svg';
 import ProgressBar from './ProgressBar';
+import MessageContainer from './MessageContainer';
 
-interface Message {
+export interface Message {
   id: number;
   content: string;
 }
@@ -47,14 +48,13 @@ function ChatPage() {
       setIsDisabled(true);
       // 임시로 2초 후에 보내기 (disabled 확인용)
       setTimeout(() => {
-        setAiMsg(() => {
-          const newAiMessage = [...aiMsg];
-          newAiMessage.push({
-            id: aiMsg.length + 1,
+        setAiMsg((prevAiMessages) => [
+          ...prevAiMessages,
+          {
+            id: prevAiMessages.length + 1,
             content: generateAiResponse()
-          });
-          return newAiMessage;
-        });
+          }
+        ]);
 
         // 마지막 AI 응답을 받은 후 입력창 막기
         if (maxCount <= aiMsg.length) {
@@ -66,7 +66,7 @@ function ChatPage() {
       }, 2000);
     }
   }, [userMsg, aiMsg]);
-  
+
   // 페이지가 시작되면 AI의 첫 번째 대화를 생성하여 보여줌
   useEffect(() => {
     const firstAiMessage: Message = {
@@ -79,33 +79,27 @@ function ChatPage() {
 
   // 스크롤 위치 최신 대화에 맞도록
   useEffect(() => {
-    console.log('스크롤 발생');
-      // 현재 스크롤 위치 === scrollRef.current.scrollTop
-      // 스크롤 길이 === scrollRef.current.scrollHeight
-      if (scrollRef.current) {
-        scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-      }
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
   }, [userMsg, aiMsg]);
 
   return (
     <Layout>
       <div className={styles.mainContainer}>
 
-        <ProgressBar length={userMsg.length} count={count} setCount={setCount} maxCount={maxCount}/>
+        <ProgressBar 
+          length={userMsg.length} 
+          count={count} 
+          setCount={setCount} 
+          maxCount={maxCount}/>
 
         <div className={styles.chatContainer}>
 
-          <div className={styles.messageContainer} ref={scrollRef}>
-            {aiMsg.map((message, index) => (
-              <div key={message.id} className={styles.msgWrapper}>
-                <p>&#x1F916; 그리다 AI</p>
-                <div className={styles.aiMsg}>{message.content}</div>
-                {userMsg[index] && (
-                  <div className={styles.userMsg}>{userMsg[index].content}</div>
-                )}
-              </div>
-            ))}
-          </div>
+          <MessageContainer 
+            aiMsg={aiMsg} 
+            userMsg={userMsg} 
+            scrollRef={scrollRef}/>
 
           <div className={styles.inputCotainer}>
             <input
