@@ -116,6 +116,9 @@
   transition: all 0.2s;
 
   &:hover {
-    background-color: #a8ebf0;
+    background-color: #80a1cc;
+    svg {
+      stroke: #FFFFFF;
+    }
   }
 }
