@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from './chatPage.module.scss';
 import Layout from 'components/common/Layout';
 import { ReactComponent as Send } from 'assets/Send.svg';
+import ProgressBar from './ProgressBar';
 
 interface Message {
   id: number;
@@ -18,9 +19,6 @@ function ChatPage() {
 
   // 최대 대화 가능 횟수
   const maxCount = 10;
-
-  // 진행bar 동적으로 width 설정
-  const progressBarWidth = `${(count / maxCount) * 600}px`;
 
   // 유저 메세지 보내기 버튼 클릭 이벤트
   function handleClick() {
@@ -42,13 +40,6 @@ function ChatPage() {
   function generateAiResponse() {
     return "AI 대답을 여기에 저장해서 보여주기!!";
   }
-
-  // 진행도 설정
-  useEffect(() => {
-    if (count < maxCount) {
-      setCount(userMsg.length);
-    } 
-  }, [count, userMsg.length]);
 
   // AI의 응답 생성 및 추가
   useEffect(() => {
@@ -100,12 +91,7 @@ function ChatPage() {
     <Layout>
       <div className={styles.mainContainer}>
 
-        <div className={styles.countContainer}>
-          <p className={styles.countText}>남은 대화 턴 수 ({count}/{maxCount})</p>
-          <div className={styles.progressBar}>
-            <div className={styles.countingBar} style={{ width: progressBarWidth }}></div>
-          </div>
-        </div>
+        <ProgressBar length={userMsg.length} count={count} setCount={setCount} maxCount={maxCount}/>
 
         <div className={styles.chatContainer}>
 
