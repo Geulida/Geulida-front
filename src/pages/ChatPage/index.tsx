@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './chatPage.module.scss';
 import Layout from 'components/common/Layout';
-import { ReactComponent as Send } from 'assets/Send.svg';
 import ProgressBar from './ProgressBar';
 import MessageContainer from './MessageContainer';
+import InputContainer from './InputContainer';
 
 export interface Message {
   id: number;
@@ -27,6 +27,11 @@ function ChatPage() {
       setCount(userMsg.length);
     } 
   }, [count, userMsg.length]);
+
+  // 유저 메세지 입력 이벤트
+  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setInputValue(e.target.value);
+  };
 
   // 유저 메세지 보내기 버튼 클릭 이벤트
   function handleClick() {
@@ -94,37 +99,22 @@ function ChatPage() {
   return (
     <Layout>
       <div className={styles.mainContainer}>
-
         <ProgressBar 
           count={count} 
           maxCount={maxCount}/>
 
         <div className={styles.chatContainer}>
-
           <MessageContainer 
             aiMsg={aiMsg} 
             userMsg={userMsg} 
             scrollRef={scrollRef}/>
 
-          <div className={styles.inputCotainer}>
-            <input
-              className={styles.input}
-              placeholder='메시지를 입력하세요 (최대 500자까지 작성할 수 있습니다)'
-              type="text"
-              value={inputValue}
-              maxLength={500}
-              onChange={(e) => setInputValue(e.target.value)}
-              disabled={isDisabled}
-            />
-
-            <button 
-              className={styles.button}
-              onClick={handleClick}
-              disabled={isDisabled}
-            >
-              <Send />
-            </button>
-          </div>
+          <InputContainer
+            inputValue={inputValue}
+            isDisabled={isDisabled}
+            handleInputChange={handleInputChange}
+            handleClick={handleClick}
+          />
         </div>
       </div>
     </Layout>
