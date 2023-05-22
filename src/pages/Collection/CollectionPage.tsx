@@ -5,6 +5,13 @@ import dummy from 'assets/dummyCollection.json';
 import CollectionItem from './CollectionItem';
 
 function CollectionPage() {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <div className={styles.container}>
       <Headline title='Collection' />
@@ -12,6 +19,11 @@ function CollectionPage() {
         {dummy.map((data) => (
           <CollectionItem key={data._id} data={data} />
         ))}
+      </div>
+      <div className={styles.scrollContainer}>
+        <button onClick={scrollToTop} type='button'>
+          TOP
+        </button>
       </div>
     </div>
   );
