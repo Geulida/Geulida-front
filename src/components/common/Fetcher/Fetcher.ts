@@ -25,4 +25,15 @@ async function userCollection() {
   return await Api.get(domain, 'collection');
 }
 
-export { userLogin, userRegister, userCollection };
+// 결과 저장하기
+async function saveIntoCollection(color: string, style: string, summary: string, result: string) {
+  const data = {
+    color,
+    style,
+    summary,
+    result,
+  };
+  return await Api.post(domain, 'collection', data);
+}
+
+export { userLogin, userRegister, userCollection, saveIntoCollection };

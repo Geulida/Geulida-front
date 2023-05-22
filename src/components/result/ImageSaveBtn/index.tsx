@@ -4,15 +4,19 @@ import styles from './imageSaveBtn.module.scss';
 import { ReactComponent as Download } from 'assets/Download.svg';
 
 // sessionStorage에서 imageUrl가져와야함
+// result 페이지에서 session에서 받아서 props로 전달
 function ImageSaveBtn() {
   const [imageUrl, setImageUrl] = useState<string>('https://cdn.veritas-a.com/news/photo/old/2/admin_1198640645.jpg');
   // const imageUrl = 'https://cdn.veritas-a.com/news/photo/old/2/admin_1198640645.jpg';
 
   // useEffect(() => {
   // 이미지 URL을 sessionStorage에서 가져와야 함
-  //   const storedImageUrl = sessionStorage.getItem('imageUrl');
-  //   setImageUrl(storedImageUrl);
+  //   const storedImageUrl = JSON.parse(sessionStorage.getItem('answerData') || '');
+  //   const { summary:description, result:imageUrl } = getAnswerData;
+  //   setImageUrl(imageUrl);
   // }, []);
+
+  // API 요청 mock data
 
   const handleDownload = async () => {
     try {
