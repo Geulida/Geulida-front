@@ -4,6 +4,7 @@ import Layout from 'components/common/Layout';
 import ProgressBar from './ProgressBar';
 import MessageContainer from './MessageContainer';
 import InputContainer from './InputContainer';
+import Loading from './Loading';
 
 export interface Message {
   id: number;
@@ -16,6 +17,7 @@ function ChatPage() {
   const [aiMsg, setAiMsg] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
+  const [showSpinner, setShowSpinner] = useState<boolean>(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // 최대 대화 가능 횟수
@@ -54,6 +56,7 @@ function ChatPage() {
 
     // 마지막 AI 메세지(summary), 이미지 url 세션 스토리지에 저장
     if (aiMsg.length === maxCount) {
+      setShowSpinner(true);
       const lastAiMessage = newAiMessage[newAiMessage.length - 1].content;
       const getAnswerData = JSON.parse(sessionStorage.getItem('answerData') || '');
       const answerData = { 
@@ -75,14 +78,14 @@ function ChatPage() {
 
   // AI의 응답 생성 및 추가
   useEffect(() => {
-    if (userMsg.length === aiMsg.length && aiMsg.length > 0) {
+    if (userMsg.length === aiMsg.length) {
       // 임시로 2초 후에 보내기 (disabled 확인용)
       setTimeout(() => {
         setAiMsg(() => {
           const newAiMessage = [...aiMsg];
           newAiMessage.push({
             id: aiMsg.length + 1,
-            content: generateAiResponse() + aiMsg.length
+            content: aiMsg.length + ': ' + generateAiResponse()
           });
 
           handleLastMessage(newAiMessage);
@@ -100,14 +103,9 @@ function ChatPage() {
     }
   }, [userMsg, aiMsg]);
 
-  // 페이지가 시작되면 AI의 첫 번째 대화를 생성하여 보여줌
+  // 첫 대화 시작 시 
   useEffect(() => {
-    const firstAiMessage: Message = {
-      id: 1,
-      content: "안녕 난 첫번째 메시지야"
-    };
-    setAiMsg([firstAiMessage]);
-    setIsDisabled(false);
+    setIsDisabled(true);
   }, []);
 
   return (
@@ -115,14 +113,15 @@ function ChatPage() {
       <div className={styles.mainContainer}>
         <ProgressBar 
           count={count} 
-          maxCount={maxCount}/>
-
+          maxCount={maxCount}
+        />
         <div className={styles.chatContainer}>
+          {showSpinner && <Loading />}
           <MessageContainer 
             aiMsg={aiMsg} 
             userMsg={userMsg} 
-            scrollRef={scrollRef}/>
-
+            scrollRef={scrollRef}
+          />
           <InputContainer
             inputValue={inputValue}
             isDisabled={isDisabled}
