@@ -34,7 +34,6 @@ function ColorPickPage() {
     }
   };
 
-  // 모달 핸들 함수
   const handleModalShow = () => {
     setShowModal((prev) => !prev);
   };

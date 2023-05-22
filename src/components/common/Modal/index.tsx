@@ -2,10 +2,6 @@ import React from 'react';
 import styles from './Modal.module.scss';
 import { ReactComponent as Cancel } from 'assets/Cancel.svg';
 
-// confirmHandler는 모달의 확인 버튼을 눌렀을 때의 이벤트를 넣는 곳입니다.
-// 로그아웃 시 진행되는 함수를 넣어주세요
-// modalType은 colorPicker, painterPicker 페이지에서 전달받아온 props입니다, 로그아웃 시에는 넘겨주지 말아주세요
-// logoutHandler는 로그아웃 이벤트 props입니다.
 interface ModalProps {
   modalHandler: () => void;
   modalMessage: string;
