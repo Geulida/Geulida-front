@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './chatPage.module.scss';
 import Layout from 'components/common/Layout';
 import ProgressBar from './ProgressBar';
@@ -20,8 +21,10 @@ function ChatPage() {
   const [showSpinner, setShowSpinner] = useState<boolean>(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  const navigate = useNavigate();
+
   // 최대 대화 가능 횟수
-  const maxCount = 3;
+  const maxCount = 10;
 
   // 유저 메세지 입력 이벤트
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -123,9 +126,12 @@ function ChatPage() {
     }
   }, [userMsg, aiMsg]);
 
-  // 첫 대화 시작 시 
+  // 시작 전 세션 스토리지 값 유효한지
   useEffect(() => {
-    setIsDisabled(true);
+    if (!sessionStorage.getItem('answerData')) {
+      alert('먼저 원하는 컬러와 화풍을 선택해주세요!');
+      navigate('/color-pick');
+    }
   }, []);
 
   return (
