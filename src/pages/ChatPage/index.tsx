@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './chatPage.module.scss';
 import Layout from 'components/common/Layout';
-import { ReactComponent as Send } from 'assets/Send.svg';
+import ProgressBar from './ProgressBar';
+import MessageContainer from './MessageContainer';
+import InputContainer from './InputContainer';
 
-interface Message {
+export interface Message {
   id: number;
   content: string;
 }
@@ -14,23 +16,53 @@ function ChatPage() {
   const [aiMsg, setAiMsg] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   // 최대 대화 가능 횟수
-  const maxCount = 10;
+  const maxCount = 3;
 
-  // 진행bar 동적으로 width 설정
-  const progressBarWidth = `${(count / maxCount) * 600}px`;
+  // 유저 메세지 입력 이벤트
+  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setInputValue(e.target.value);
+  };
 
-  // 보내기 버튼 클릭 이벤트
+  // 유저 메세지 보내기 버튼 클릭 이벤트
   function handleClick() {
-    setIsDisabled(true);
     if (inputValue.trim() !== '' && count < maxCount) {
-      const newMessage: Message = {
-        id: userMsg.length + 1,
-        content: inputValue
-      };
-      setUserMsg([...userMsg, newMessage]);
+      setIsDisabled(true);
+      setUserMsg(() => {
+        const newUserMessage = [...userMsg];
+        newUserMessage.push({
+          id: userMsg.length + 1,
+          content: inputValue
+        });
+        return newUserMessage;
+      })
       setInputValue('');
+    }
+  }
+
+  // AI의 응답 받아오기
+  function generateAiResponse() {
+    return "AI 대답을 여기에 저장해서 보여주기!!";
+  }
+
+  // 마지막 메시지 보낼 때 실행
+  function handleLastMessage(newAiMessage: Message[]) {
+    // 마지막으로 사용자가 메시지를 보내고 입력창 막기
+    maxCount <= userMsg.length ? setIsDisabled(true) : setIsDisabled(false);
+
+    // 마지막 AI 메세지(summary), 이미지 url 세션 스토리지에 저장
+    if (aiMsg.length === maxCount) {
+      const lastAiMessage = newAiMessage[newAiMessage.length - 1].content;
+      const getAnswerData = JSON.parse(sessionStorage.getItem('answerData') || '');
+      const answerData = { 
+        ...getAnswerData, 
+        summary: lastAiMessage,
+        url : "나중에 받아올 이미지 여기에 저장하기",
+      };
+
+      sessionStorage.setItem('answerData', JSON.stringify(answerData));
     }
   }
 
@@ -44,29 +76,30 @@ function ChatPage() {
   // AI의 응답 생성 및 추가
   useEffect(() => {
     if (userMsg.length === aiMsg.length && aiMsg.length > 0) {
-      setIsDisabled(true);
       // 임시로 2초 후에 보내기 (disabled 확인용)
       setTimeout(() => {
         setAiMsg(() => {
           const newAiMessage = [...aiMsg];
           newAiMessage.push({
             id: aiMsg.length + 1,
-            content: generateAiResponse()
+            content: generateAiResponse() + aiMsg.length
           });
+
+          handleLastMessage(newAiMessage);
+
           return newAiMessage;
         });
-
-        // 마지막 AI 응답을 받은 후 입력창 막기
-        if (maxCount <= aiMsg.length) {
-          setIsDisabled(true);
-        } else {
-          setIsDisabled(false);
-        }
-
       }, 2000);
     }
   }, [userMsg, aiMsg]);
-  
+
+  // 스크롤 위치 최신 대화에 맞도록
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [userMsg, aiMsg]);
+
   // 페이지가 시작되면 AI의 첫 번째 대화를 생성하여 보여줌
   useEffect(() => {
     const firstAiMessage: Message = {
@@ -77,55 +110,25 @@ function ChatPage() {
     setIsDisabled(false);
   }, []);
 
-  // AI의 응답 받아오기
-  function generateAiResponse() {
-    return "AI 대답을 여기에 저장해서 보여주기!!";
-  }
-
   return (
     <Layout>
       <div className={styles.mainContainer}>
-
-        <div className={styles.countContainer}>
-          <p className={styles.countText}>남은 대화 턴 수 ({count}/{maxCount})</p>
-          <div className={styles.progressBar}>
-            <div className={styles.countingBar} style={{ width: progressBarWidth }}></div>
-          </div>
-        </div>
+        <ProgressBar 
+          count={count} 
+          maxCount={maxCount}/>
 
         <div className={styles.chatContainer}>
+          <MessageContainer 
+            aiMsg={aiMsg} 
+            userMsg={userMsg} 
+            scrollRef={scrollRef}/>
 
-        <div className={styles.messageContainer}>
-          {aiMsg.map((message, index) => (
-            <div key={message.id} className={styles.msgWrapper}>
-              <p>&#x1F916; 그리다 AI</p>
-              <div className={styles.aiMsg}>{message.content}</div>
-              {userMsg[index] && (
-                <div className={styles.userMsg}>{userMsg[index].content}</div>
-              )}
-            </div>
-          ))}
-        </div>
-
-          <div className={styles.inputCotainer}>
-            <input
-              className={styles.input}
-              placeholder='메시지를 입력하세요 (최대 500자까지 작성할 수 있습니다)'
-              type="text"
-              value={inputValue}
-              maxLength={500}
-              onChange={(e) => setInputValue(e.target.value)}
-              disabled={isDisabled}
-            />
-
-            <button 
-              className={styles.button}
-              onClick={handleClick}
-              disabled={isDisabled}
-            >
-              <Send />
-            </button>
-          </div>
+          <InputContainer
+            inputValue={inputValue}
+            isDisabled={isDisabled}
+            handleInputChange={handleInputChange}
+            handleClick={handleClick}
+          />
         </div>
       </div>
     </Layout>
