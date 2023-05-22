@@ -1,4 +1,9 @@
 /// <reference types='react-scripts' />
-interface Window {
-  Kakao: any;
+
+export {};
+
+declare global {
+  interface Window {
+    Kakao: any;
+  }
 }
