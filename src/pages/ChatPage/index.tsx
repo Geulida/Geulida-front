@@ -46,27 +46,33 @@ function ChatPage() {
 
   // AI의 응답 받아오기
   function generateAiResponse() {
-    return "AI 대답을 여기에 저장해서 보여주기!!";
+    return 'AI 대답을 여기에 저장해서 보여주기!!';
+  }
+
+  // AI 대화 요약 받아오기
+  function summaryAiResponse() {
+    return '마지막 요약 문장이지롱';
+  }
+
+  function generateImageUrl() {
+    return '나중에 받아올 이미지 여기에 저장하기';
   }
 
   // 마지막 메시지 보낼 때 실행
   function handleLastMessage(newAiMessage: Message[]) {
-    // 마지막으로 사용자가 메시지를 보내고 입력창 막기
-    maxCount <= userMsg.length ? setIsDisabled(true) : setIsDisabled(false);
-
+    setShowSpinner(true);
+    setIsDisabled(true);
+    
     // 마지막 AI 메세지(summary), 이미지 url 세션 스토리지에 저장
-    if (aiMsg.length === maxCount) {
-      setShowSpinner(true);
-      const lastAiMessage = newAiMessage[newAiMessage.length - 1].content;
-      const getAnswerData = JSON.parse(sessionStorage.getItem('answerData') || '');
-      const answerData = { 
-        ...getAnswerData, 
-        summary: lastAiMessage,
-        url : "나중에 받아올 이미지 여기에 저장하기",
-      };
+    const lastAiMessage = newAiMessage[newAiMessage.length - 1].content;
+    const getAnswerData = JSON.parse(sessionStorage.getItem('answerData') || '');
+    const answerData = { 
+      ...getAnswerData, 
+      summary: lastAiMessage,
+      url : generateImageUrl(),
+    };
 
-      sessionStorage.setItem('answerData', JSON.stringify(answerData));
-    }
+    sessionStorage.setItem('answerData', JSON.stringify(answerData));
   }
 
   // 진행도 설정
@@ -87,9 +93,23 @@ function ChatPage() {
             id: aiMsg.length + 1,
             content: aiMsg.length + ': ' + generateAiResponse()
           });
+          return newAiMessage;
+        });
+        setIsDisabled(false);
+      }, 2000);
+    }
+
+    // 마지막 요약 문장 추가
+    if (userMsg.length === maxCount && aiMsg.length === maxCount) {
+      setTimeout(() => {
+        setAiMsg(() => {
+          const newAiMessage = [...aiMsg];
+          newAiMessage.push({
+            id: aiMsg.length + 1,
+            content: summaryAiResponse()
+          });
 
           handleLastMessage(newAiMessage);
-
           return newAiMessage;
         });
       }, 2000);
