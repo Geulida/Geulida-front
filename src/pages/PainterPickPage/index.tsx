@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ReactComponent as RightArrow } from 'assets/RightArrow.svg';
 import { ReactComponent as LeftArrow } from 'assets/LeftArrow.svg';
 
+import Modal from 'components/common/Modal';
 import CustomSelect from './CustomSelect';
 
 import styles from './painterPickPage.module.scss';
@@ -14,6 +15,7 @@ function PainterPickPage() {
   const PainterPickerRef = useRef<HTMLDivElement>(null);
   const [painterName, setPainterName] = useState<string>('');
   const [imageUrl, setImageUrl] = useState<string>('');
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   useEffect(() => {
     const answerData = sessionStorage.getItem('answerData');
@@ -21,13 +23,18 @@ function PainterPickPage() {
     console.log(answerData2);
   }, []);
 
+  // 모달 핸들 함수
+  const handleModalShow = () => {
+    setShowModal((prev) => !prev);
+  };
+
   const handleNext = () => {
     const getAnswerData = JSON.parse(sessionStorage.getItem('answerData') || '');
     const answerData = { ...getAnswerData, style: painterName };
     sessionStorage.setItem('answerData', JSON.stringify(answerData));
 
     if (!painterName) {
-      alert('원하는 화풍을 선택해주세요');
+      handleModalShow();
       return;
     }
     navigate('/chat');
@@ -49,6 +56,7 @@ function PainterPickPage() {
 
   return (
     <div className={styles.container}>
+      {showModal && <Modal modalType='color' modalHandler={handleModalShow} modalMessage='원하는 화풍을 선택해주세요' />}
       <button className={styles.prevButton} onClick={() => navigate(-1)}>
         <LeftArrow className={styles.arrowLeft} />
       </button>
