@@ -18,7 +18,7 @@ function Modal({ modalHandler, modalMessage, modalType, logoutHandler }: ModalPr
   };
 
   return (
-    <>
+    <div className={styles.modalContainer}>
       <div className={styles.backdrop}></div>
       <div className={styles.overlay}>
         <div className={styles.modalTop}>
@@ -38,7 +38,7 @@ function Modal({ modalHandler, modalMessage, modalType, logoutHandler }: ModalPr
           </button>
         )}
       </div>
-    </>
+    </div>
   );
 }
 
