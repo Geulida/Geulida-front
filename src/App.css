@@ -69,6 +69,8 @@ body {
   background: linear-gradient(45deg, #5ec5ce, #5991d1, #e5bdc6, #80bccc, #80a1cc, #e5bdc6, #80bccc);
   background-size: 400% 400%;
   animation: gradient 40s ease infinite;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 header {
