@@ -47,6 +47,18 @@ function ChatPage() {
     }
   }
 
+  // AI 응답 저장
+  function handleAddAiResponse(message: string) {
+    setAiMsg(() => {
+      const newAiMessage = [...aiMsg];
+      newAiMessage.push({
+        id: aiMsg.length + 1,
+        content: message
+      });
+      return newAiMessage;
+    });
+  }
+
   // AI의 응답 받아오기
   function generateAiResponse() {
     return 'AI 대답을 여기에 저장해서 보여주기!!';
@@ -57,21 +69,17 @@ function ChatPage() {
     return '마지막 요약 문장이지롱';
   }
 
+  // 이미지 저장
   function generateImageUrl() {
     return '나중에 받아올 이미지 여기에 저장하기';
   }
 
-  // 마지막 메시지 보낼 때 실행
-  function handleLastMessage(newAiMessage: Message[]) {
-    setShowSpinner(true);
-    setIsDisabled(true);
-    
-    // 마지막 AI 메세지(summary), 이미지 url 세션 스토리지에 저장
-    const lastAiMessage = newAiMessage[newAiMessage.length - 1].content;
+  // 마지막 AI 메세지(summary), 이미지 url 세션 스토리지에 저장
+  function handleLastMessage() {
     const getAnswerData = JSON.parse(sessionStorage.getItem('answerData') || '');
     const answerData = { 
       ...getAnswerData, 
-      summary: lastAiMessage,
+      summary: summaryAiResponse(),
       url : generateImageUrl(),
     };
 
@@ -87,17 +95,10 @@ function ChatPage() {
 
   // AI의 응답 생성 및 추가
   useEffect(() => {
+    // 임시로 2초 후에 보내기 (disabled 확인용)
     if (userMsg.length === aiMsg.length) {
-      // 임시로 2초 후에 보내기 (disabled 확인용)
       setTimeout(() => {
-        setAiMsg(() => {
-          const newAiMessage = [...aiMsg];
-          newAiMessage.push({
-            id: aiMsg.length + 1,
-            content: aiMsg.length + ': ' + generateAiResponse()
-          });
-          return newAiMessage;
-        });
+        handleAddAiResponse(generateAiResponse());
         setIsDisabled(false);
       }, 2000);
     }
@@ -105,16 +106,10 @@ function ChatPage() {
     // 마지막 요약 문장 추가
     if (userMsg.length === maxCount && aiMsg.length === maxCount) {
       setTimeout(() => {
-        setAiMsg(() => {
-          const newAiMessage = [...aiMsg];
-          newAiMessage.push({
-            id: aiMsg.length + 1,
-            content: summaryAiResponse()
-          });
-
-          handleLastMessage(newAiMessage);
-          return newAiMessage;
-        });
+        handleAddAiResponse(summaryAiResponse());
+        setShowSpinner(true);
+        setIsDisabled(true);
+        handleLastMessage();
       }, 2000);
     }
   }, [userMsg, aiMsg]);
