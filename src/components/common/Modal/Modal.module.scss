@@ -1,5 +1,6 @@
 .modalContainer {
   animation: fadeIn 0.3s ease-in;
+  z-index: 1000;
 }
 
 @keyframes fadeIn {
@@ -37,7 +38,7 @@
   flex-direction: column;
   justify-content: start;
 
-  z-index: 10;
+  z-index: 1000;
   box-shadow: 0rem 0rem 0.7rem rgba(0, 0, 0, 0.3);
 }
 
