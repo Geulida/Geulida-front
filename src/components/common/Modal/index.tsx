@@ -28,13 +28,13 @@ function Modal({ modalHandler, modalMessage, modalType, logoutHandler }: ModalPr
           </div>
         </div>
         <div className={styles.modalMessage}>{modalMessage}</div>
-        {modalType === 'color' || 'painter' ? (
-          <button className={styles.confirmBtn} onClick={closeModal}>
-            확인 후 닫기
-          </button>
-        ) : (
+        {!modalType ? (
           <button className={styles.confirmBtn} onClick={logoutHandler}>
             로그아웃
+          </button>
+        ) : (
+          <button className={styles.confirmBtn} onClick={closeModal}>
+            확인 후 닫기
           </button>
         )}
       </div>
