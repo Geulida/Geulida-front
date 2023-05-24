@@ -1,12 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import Modal from 'components/common/Modal';
 import { ChromePicker, ColorResult, RGBColor } from 'react-color';
+
 import styles from './colorPickPage.module.scss';
 import { ReactComponent as RightArrow } from 'assets/RightArrow.svg';
 
 function ColorPickPage() {
   const [isShown, setIsShown] = useState<boolean>(false);
-  const [colorPickerHex, setColorPickerHex] = useState<string>('#ffffff');
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [colorPickerHex, setColorPickerHex] = useState<string>('');
   const [colorPickerRGB, setColorPickerRGB] = useState({
     r: 255,
     g: 255,
@@ -30,12 +34,20 @@ function ColorPickPage() {
     }
   };
 
+  const handleModalShow = () => {
+    setShowModal((prev) => !prev);
+  };
+
   const handleNext = () => {
     const answerData = {
       color: colorPickerHex,
     };
 
     sessionStorage.setItem('answerData', JSON.stringify(answerData));
+    if (!colorPickerHex) {
+      handleModalShow();
+      return;
+    }
     navigate('/painter-pick');
   };
 
@@ -49,6 +61,7 @@ function ColorPickPage() {
 
   return (
     <div className={styles.container}>
+      {showModal && <Modal modalType='color' modalHandler={handleModalShow} modalMessage='원하는 컬러를 선택해주세요' />}
       <div className={styles.left}></div>
       <div className={styles.colorPickerWrapper} ref={colorPickerRef}>
         {isShown && <ChromePicker className={styles.colorPicker} onChange={handleChangeColorPicker} color={colorPickerHex} />}

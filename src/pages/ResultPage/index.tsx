@@ -3,6 +3,7 @@ import styles from './resultPage.module.scss';
 import KakaoShareBtn from '../../components/result/KakaoShareBtn';
 import GallerySaveBtn from '../../components/result/GallerySaveBtn';
 import ImageSaveBtn from '../../components/result/ImageSaveBtn';
+
 // 갤러리 저장버튼을 누르면 api이미지 저장
 // result page에서 session에 저장되어있는 객체를 불러와야함
 /**
@@ -19,14 +20,14 @@ function ResultPage() {
       <div className={styles.resultPageContainer}>
         <section className={styles.resultContents}>
           <div className={styles.imageWrapper}>
-            <img src='/image/test.jpeg' />
+            <img src='https://cdn.veritas-a.com/news/photo/old/2/admin_1198640645.jpg' />
           </div>
           <div className={styles.resultContentsText}>결과 한 줄</div>
         </section>
         <section className={styles.resultBtnContainer}>
-          <KakaoShareBtn />
           <ImageSaveBtn />
           <GallerySaveBtn />
+          <KakaoShareBtn />
         </section>
       </div>
     </div>

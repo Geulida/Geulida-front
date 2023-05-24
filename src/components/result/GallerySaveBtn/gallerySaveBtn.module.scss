@@ -1,0 +1,24 @@
+.gallerySaveBtn {
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 90px;
+  height: 90px;
+
+  border-radius: 50%;
+  background-color: #e5bdc6;
+
+  transition: all 0.2s;
+  &:hover {
+    background-color: #e69dad;
+    box-shadow: 1px 1.5px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.gallerySaveBtn svg {
+  stroke: white;
+  text-align: center;
+}
