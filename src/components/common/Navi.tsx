@@ -19,7 +19,7 @@ function Navi() {
 
   return (
     <>
-      {showModal && <Modal modalHandler={handleModalShow} modalMessage='로그아웃 하시겠습니까?' />}
+      {showModal && <Modal modalType='logout' modalHandler={handleModalShow} modalMessage='로그아웃 하시겠습니까?' />}
       <div className={styles.nav}>
         <nav>
           <div>

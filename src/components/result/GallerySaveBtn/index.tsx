@@ -1,19 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { saveIntoCollection } from '../../common/Fetcher/Fetcher';
 
 import { ReactComponent as PhotoPlus } from 'assets/PhotoPlus.svg';
 import styles from './gallerySaveBtn.module.scss';
 
-function GallerySaveBtn() {
-  // 실제 API 요청 데이터
-  // const getAnswerData = JSON.parse(sessionStorage.getItem('answerData') || '');
-  // const { color, style, summary, result } = getAnswerData;
+import Modal from 'components/common/Modal';
 
-  // API 요청 mock data
-  const getAnswerData = JSON.parse(sessionStorage.getItem('answerData') || '');
-  const { color, style } = getAnswerData;
-  const summary = 'summary';
-  const result = 'https://cdn.veritas-a.com/news/photo/old/2/admin_1198640645.jpg';
+interface data {
+  color: string;
+  hexcode: string;
+  style: string;
+  summary: string;
+  url: string;
+}
+
+interface GallerySaveBtnProps {
+  storedData: data;
+}
+
+function GallerySaveBtn({ storedData }: GallerySaveBtnProps) {
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   // 임의로 토큰 쿠키에 욱여넣음
   // 토큰을 쿠키에 저장합니다.
@@ -30,6 +36,7 @@ function GallerySaveBtn() {
     }
     return null;
   }
+
   useEffect(() => {
     setToken(`${process.env.REACT_APP_TOKEN}`);
     console.log(getToken());
@@ -37,16 +44,21 @@ function GallerySaveBtn() {
 
   const handleSaveBtnClick = async () => {
     try {
-      const response = await saveIntoCollection(color, style, summary, result);
-      alert(response);
+      const response = await saveIntoCollection(storedData);
+      handleModalShow();
       console.log(response);
     } catch (err) {
       console.log('갤러리에 저장 실패: ', err);
     }
   };
 
+  function handleModalShow() {
+    setShowModal((prev) => !prev);
+  }
+
   return (
     <div>
+      {showModal && <Modal modalType='confirm' modalHandler={handleModalShow} modalMessage='이미지가 갤러리에 저장되었습니다.' />}
       <div className={styles.gallerySaveBtn}>
         <PhotoPlus onClick={handleSaveBtnClick} />
       </div>
