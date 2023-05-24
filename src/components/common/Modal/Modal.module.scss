@@ -92,16 +92,19 @@
 
 .confirmBtn {
   margin: 10px 180px 10px 180px;
-  padding: 10px 0 10px 0;
+  padding: 10px 0;
 
   background-color: #e5bdc6;
   border-radius: 0.5rem;
+  box-sizing: border-box;
 
   font-size: 18px;
   font-weight: bold;
   color: white;
   transition: all 0.5s;
   &:hover {
-    background: #e69dad;
+    color: #80a1cc;
+    background-color: white;
+    border: 1px solid #80a1cc;
   }
 }
