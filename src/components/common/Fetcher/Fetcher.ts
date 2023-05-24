@@ -1,7 +1,15 @@
 import * as Api from './Api';
 
 const port = 3000;
-const domain = `http://34.64.112.254:${port}/api`;
+const domain = `https://port-0-geulida-back-lhe2bli1h434z.sel4.cloudtype.app/api`;
+
+interface data {
+  color: string;
+  hexcode: string;
+  style: string;
+  summary: string;
+  url: string;
+}
 
 // 로그인
 async function userLogin(email: string, password: string) {
@@ -27,13 +35,7 @@ async function userCollection(page: number) {
 }
 
 // 결과 저장하기
-async function saveIntoCollection(color: string, style: string, summary: string, result: string) {
-  const data = {
-    color,
-    style,
-    summary,
-    result,
-  };
+async function saveIntoCollection(data: data) {
   return await Api.post(domain, 'collection', data);
 }
 
