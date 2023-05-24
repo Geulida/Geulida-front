@@ -38,23 +38,10 @@ nav {
   cursor: pointer;
   border-radius: 1rem;
   &:hover {
-    background: rgba(18, 15, 16, 0.25);
+    background: rgba(114, 97, 134, 0.25);
   }
 }
 
 .top {
   margin-bottom: 40px;
 }
-
-// .backdrop {
-//   width: 100vw;
-//   height: 100vh;
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   z-index: -1;
-//   background-color: rgba(0, 0, 0, 0.1);
-//   backdrop-filter: blur(2px);
-
-//   transition: all 0.8s;
-// }
