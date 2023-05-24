@@ -9,28 +9,24 @@ interface InputContainerProps {
   handleClick: () => void;
 }
 
-function InputContainer ({ inputValue, isDisabled, handleInputChange, handleClick}: InputContainerProps) {
+function InputContainer({ inputValue, isDisabled, handleInputChange, handleClick }: InputContainerProps) {
   return (
-    <div className={styles.inputCotainer}>
+    <div className={styles.inputContainer}>
       <input
         className={styles.input}
         placeholder='메시지를 입력하세요 (최대 500자까지 작성할 수 있습니다)'
-        type="text"
+        type='text'
         value={inputValue}
         maxLength={500}
         onChange={handleInputChange}
         disabled={isDisabled}
       />
 
-      <button 
-        className={styles.button}
-        onClick={handleClick}
-        disabled={isDisabled}
-      >
+      <button className={styles.button} onClick={handleClick} disabled={isDisabled}>
         <Send />
       </button>
     </div>
-  )
+  );
 }
 
 export default InputContainer;

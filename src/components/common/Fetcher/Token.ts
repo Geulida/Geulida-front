@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 // 토큰을 쿠키에 저장합니다.
 function setToken(tokenValue: string) {
   document.cookie = `token=${tokenValue}; path=/`;

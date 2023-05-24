@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { GetColorName } from 'hex-color-to-color-name';
 
 import Modal from 'components/common/Modal';
 import { ChromePicker, ColorResult, RGBColor } from 'react-color';
@@ -11,6 +12,7 @@ function ColorPickPage() {
   const [isShown, setIsShown] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [colorPickerHex, setColorPickerHex] = useState<string>('');
+  const [namedColor, setNamedColor] = useState('');
   const [colorPickerRGB, setColorPickerRGB] = useState({
     r: 255,
     g: 255,
@@ -25,7 +27,10 @@ function ColorPickPage() {
   const handleChangeColorPicker = (color: ColorResult) => {
     setColorPickerRGB({ ...colorPickerRGB, ...(color.rgb as RGBColor) });
     setColorPickerHex(color.hex);
-    console.log(colorPickerRGB);
+    const standardName = GetColorName(colorPickerHex);
+    setNamedColor(standardName);
+    console.log(colorPickerHex);
+    console.log(namedColor);
   };
 
   const handleClickOutside = (e: MouseEvent) => {
@@ -40,11 +45,12 @@ function ColorPickPage() {
 
   const handleNext = () => {
     const answerData = {
-      color: colorPickerHex,
+      color: namedColor,
+      hexcode: colorPickerHex,
     };
 
     sessionStorage.setItem('answerData', JSON.stringify(answerData));
-    if (!colorPickerHex) {
+    if (!namedColor) {
       handleModalShow();
       return;
     }

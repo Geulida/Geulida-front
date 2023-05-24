@@ -21,11 +21,13 @@
   p {
     color: white;
     font-size: 18px;
+    text-align: center;
     &:nth-child(3) {
       margin-top: 20px;
       font-family: 'PFStardust';
       font-size: 30px;
       line-height: 1.2;
+      text-align: center;
     }
   }
 }

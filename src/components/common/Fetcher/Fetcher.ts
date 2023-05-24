@@ -20,9 +20,10 @@ async function userRegister(name: string, email: string, password: string) {
   };
   return await Api.post(domain, 'register', data, false);
 }
-// 결과 불러오기
-async function userCollection() {
-  return await Api.get(domain, 'collection');
+// Collection 불러오기
+async function userCollection(page: number) {
+  const params = `collection?page=${page}`;
+  return await Api.get(domain, params);
 }
 
 // 결과 저장하기

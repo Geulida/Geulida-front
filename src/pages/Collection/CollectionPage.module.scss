@@ -13,3 +13,25 @@
   flex-shrink: 0;
   flex-wrap: wrap;
 }
+
+.scrollContainer {
+  position: fixed;
+  right: 3%;
+  bottom: 5%;
+  z-index: 1;
+  cursor: pointer;
+
+  button {
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    border-radius: 50%;
+    border: 2px solid white;
+    padding: 22px 19px;
+
+    &:hover {
+      background-color: rgba($color: #fff, $alpha: 0.7);
+      transition: all 0.4s ease-out;
+    }
+  }
+}
