@@ -34,7 +34,7 @@ function Modal({ modalHandler, modalMessage, modalType, logoutHandler, navigateH
             로그아웃
           </button>
         )}
-        {modalType === 'choice' && (
+        {modalType === 'confirm' && (
           <button className={styles.confirmBtn} onClick={closeModal}>
             확인 후 닫기
           </button>

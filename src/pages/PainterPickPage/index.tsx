@@ -56,7 +56,7 @@ function PainterPickPage() {
 
   return (
     <div className={styles.container}>
-      {showModal && <Modal modalType='choice' modalHandler={handleModalShow} modalMessage='원하는 화풍을 선택해주세요' />}
+      {showModal && <Modal modalType='confirm' modalHandler={handleModalShow} modalMessage='원하는 화풍을 선택해주세요' />}
       <button className={styles.prevButton} onClick={() => navigate(-1)}>
         <LeftArrow className={styles.arrowLeft} />
       </button>

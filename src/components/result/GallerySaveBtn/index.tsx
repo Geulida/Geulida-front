@@ -58,7 +58,7 @@ function GallerySaveBtn({ storedData }: GallerySaveBtnProps) {
 
   return (
     <div>
-      {showModal && <Modal modalType='choice' modalHandler={handleModalShow} modalMessage='이미지가 갤러리에 저장되었습니다.' />}
+      {showModal && <Modal modalType='confirm' modalHandler={handleModalShow} modalMessage='이미지가 갤러리에 저장되었습니다.' />}
       <div className={styles.gallerySaveBtn}>
         <PhotoPlus onClick={handleSaveBtnClick} />
       </div>

@@ -58,7 +58,7 @@ function ColorPickPage() {
 
   return (
     <div className={styles.container}>
-      {showModal && <Modal modalType='choice' modalHandler={handleModalShow} modalMessage='원하는 컬러를 선택해주세요' />}
+      {showModal && <Modal modalType='confirm' modalHandler={handleModalShow} modalMessage='원하는 컬러를 선택해주세요' />}
       <div className={styles.left}></div>
       <div className={styles.colorPickerWrapper} ref={colorPickerRef}>
         {isShown && <ChromePicker className={styles.colorPicker} onChange={handleChangeColorPicker} color={colorPickerHex} />}
