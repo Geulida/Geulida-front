@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import styles from './chatPage.module.scss';
 import { Message } from './index';
 
@@ -13,7 +13,7 @@ function MessageContainer ({ aiMsg, userMsg, scrollRef }: MessageContainerProps)
     <div className={styles.messageContainer} ref={scrollRef}>
       {aiMsg.map((message, index) => (
         <div key={message.id} className={styles.msgWrapper}>
-          <p>&#x1F916; 그리다 AI</p>
+          <p>🤖 그리다 AI</p>
           <div className={styles.aiMsg}>{message.content}</div>
           {userMsg[index] && (
             <div className={styles.userMsg}>{userMsg[index].content}</div>

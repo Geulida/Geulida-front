@@ -39,4 +39,21 @@ async function saveIntoCollection(data: data) {
   return await Api.post(domain, 'collection', data);
 }
 
-export { userLogin, userRegister, userCollection, saveIntoCollection };
+// Chat 
+async function generateChat(message: string) {
+  const data = {
+    message: message,
+  };
+  return await Api.post(domain, 'chat', data, false);
+}
+
+// 마지막 요약 문장
+async function summaryChat(message: string) {
+  const data = {
+    message: message,
+  };
+  return await Api.post(domain, 'chat/last', data, false);
+}
+
+
+export { userLogin, userRegister, userCollection, saveIntoCollection, generateChat, summaryChat };
