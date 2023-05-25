@@ -46,7 +46,7 @@ function CollectionPage() {
     <div className={styles.container}>
       <Headline title='Collection' />
       <div className={styles.main}>
-        {dummy.map((data) => (
+        {collectionData.map((data) => (
           <CollectionItem key={data._id} data={data} />
         ))}
       </div>

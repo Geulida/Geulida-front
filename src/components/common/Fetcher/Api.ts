@@ -28,6 +28,7 @@ async function request<T>({ endpoint, method, params = '', data, requiresToken =
       method,
       headers,
       data,
+      withCredentials: true,
     });
 
     return response.data;

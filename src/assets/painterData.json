@@ -1,14 +1,25 @@
 [
-  { "_id": 1, "name": "미켈란젤로", "imageUrl": "https://mblogthumb-phinf.pstatic.net/20160512_2/ktv520_1463059545271tH5OY_JPEG/%C3%B5%C4%A1%C3%A2%C1%B6.jpg?type=w2" },
-  { "_id": 2, "name": "피카소", "imageUrl": "https://mblogthumb-phinf.pstatic.net/data44/2009/1/1/213/%C7%C7%C4%AB%BC%D2_myksm607.jpg?type=w210" },
-  { "_id": 3, "name": "알폰스 무하", "imageUrl": "https://thumb.zumst.com/530x0/https://static.news.zumst.com/images/18/2019/12/26/e8b9b58fdd284917906244ab05d98945.jpeg" },
+  { "_id": 1, "name": "미켈란젤로", "englishName": "Michelangelo", "imageUrl": "https://mblogthumb-phinf.pstatic.net/20160512_2/ktv520_1463059545271tH5OY_JPEG/%C3%B5%C4%A1%C3%A2%C1%B6.jpg?type=w2" },
+  { "_id": 2, "name": "피카소", "englishName": "Picasso", "imageUrl": "https://mblogthumb-phinf.pstatic.net/data44/2009/1/1/213/%C7%C7%C4%AB%BC%D2_myksm607.jpg?type=w210" },
+  {
+    "_id": 3,
+    "name": "알폰스 무하",
+    "englishName": "Alphonse Muha",
+    "imageUrl": "https://thumb.zumst.com/530x0/https://static.news.zumst.com/images/18/2019/12/26/e8b9b58fdd284917906244ab05d98945.jpeg"
+  },
   {
     "_id": 4,
     "name": "클로드 모네",
+    "englishName": "Claude Monet",
     "imageUrl": "https://mblogthumb-phinf.pstatic.net/MjAxNzA3MjlfMTg5/MDAxNTAxMzQwMzAxNjA3.KMoUw-dSxyp9Mx2cZWW76vb-cXy_qtQ6HrXwAyEY0osg.MStD20rJ5qqIlCm3d8GEkXqfHFQH0HPsyU-llyXgH6sg.JPEG.changkeun58/30355_93877_jpg_M620.jpg?type=w800"
   },
-  { "_id": 5, "name": "렘브란트", "imageUrl": "https://cdn.veritas-a.com/news/photo/old/2/admin_1198640645.jpg" },
-  { "_id": 6, "name": "조르주 쇠라", "imageUrl": "http://www.mu-um.com/data/Exhibit/201704/1493292631.jpg" },
-  { "_id": 7, "name": "장오노레 프라고나르", "imageUrl": "https://cdn.safetimes.co.kr/news/photo/202105/95430_75780_416.jpg" },
-  { "_id": 8, "name": "빈센트 반 고흐", "imageUrl": "https://c.wallhere.com/photos/46/43/2560x1600_px_Classy_fantasy_Art_The_Starry_Night_Vincent_Van_Gogh-1021920.jpg!d" }
+  { "_id": 5, "name": "렘브란트", "englishName": "Rembrandt", "imageUrl": "https://cdn.veritas-a.com/news/photo/old/2/admin_1198640645.jpg" },
+  { "_id": 6, "name": "조르주 쇠라", "englishName": "Georges Soura", "imageUrl": "http://www.mu-um.com/data/Exhibit/201704/1493292631.jpg" },
+  { "_id": 7, "name": "장오노레 프라고나르", "englishName": "Jean O'Nore Fragonard", "imageUrl": "https://cdn.safetimes.co.kr/news/photo/202105/95430_75780_416.jpg" },
+  {
+    "_id": 8,
+    "name": "빈센트 반 고흐",
+    "englishName": "Vincent van Gogh",
+    "imageUrl": "https://c.wallhere.com/photos/46/43/2560x1600_px_Classy_fantasy_Art_The_Starry_Night_Vincent_Van_Gogh-1021920.jpg!d"
+  }
 ]
