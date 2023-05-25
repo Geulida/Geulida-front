@@ -1,6 +1,5 @@
 import * as Api from './Api';
 
-const port = 3000;
 const domain = `https://port-0-geulida-back-lhe2bli1h434z.sel4.cloudtype.app/api`;
 
 interface data {
@@ -19,6 +18,7 @@ async function userLogin(email: string, password: string) {
   };
   return await Api.post(domain, 'login', data, false);
 }
+
 // 회원 가입
 async function userRegister(name: string, email: string, password: string) {
   const data = {
@@ -28,6 +28,7 @@ async function userRegister(name: string, email: string, password: string) {
   };
   return await Api.post(domain, 'register', data, false);
 }
+
 // Collection 불러오기
 async function userCollection(page: number) {
   const params = `collection?page=${page}`;
