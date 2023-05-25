@@ -2,14 +2,24 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './chatPage.module.scss';
 import Layout from 'components/common/Layout';
+import Modal from 'components/common/Modal';
 import ProgressBar from './ProgressBar';
 import MessageContainer from './MessageContainer';
 import InputContainer from './InputContainer';
 import Loading from './Loading';
+import { generateChat, summaryChat } from 'components/common/Fetcher/Fetcher';
 
 export interface Message {
   id: number;
   content: string;
+}
+
+interface data {
+  color: string;
+  hexcode: string;
+  style: string;
+  summary: string;
+  url: string;
 }
 
 function ChatPage() {
@@ -19,12 +29,20 @@ function ChatPage() {
   const [inputValue, setInputValue] = useState<string>('');
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const [showSpinner, setShowSpinner] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [storedData, setStoredData] = useState<data>({
+    color: '',
+    hexcode: '',
+    style: '',
+    summary: '',
+    url: '',
+  });
 
   const navigate = useNavigate();
 
   // 최대 대화 가능 횟수
-  const maxCount = 10;
+  const MAX_COUNT = 10;
 
   // 유저 메세지 입력 이벤트
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -33,7 +51,7 @@ function ChatPage() {
 
   // 유저 메세지 보내기 버튼 클릭 이벤트
   function handleClick() {
-    if (inputValue.trim() !== '' && count < maxCount) {
+    if (inputValue.trim() !== '' && count < MAX_COUNT) {
       setIsDisabled(true);
       setUserMsg(() => {
         const newUserMessage = [...userMsg];
@@ -57,16 +75,59 @@ function ChatPage() {
       });
       return newAiMessage;
     });
+
+    if (userMsg.length === MAX_COUNT && aiMsg.length === MAX_COUNT) {
+      setIsDisabled(true);
+      setShowSpinner(true);
+    } else {
+      setIsDisabled(false);
+    }
+  }
+
+  function totalMessage() {
+    let totalMsg = '';
+
+    // 사용자 대화와 AI 대화를 번갈아가며 누적하여 문자열로 생성
+    for (let i = 0; i < userMsg.length; i++) {
+      totalMsg += `AI: ${aiMsg[i].content}\n`;
+      totalMsg += `USER: ${userMsg[i].content}\n`;
+    }
+
+    return totalMsg;
   }
 
   // AI의 응답 받아오기
-  function generateAiResponse() {
-    return 'AI 대답을 여기에 저장해서 보여주기!!';
-  }
+  async function generateAiResponse() {
+    try {
+      console.log(totalMessage());
+
+      const getTotalMsg = totalMessage();
+      const aiResponse = await generateChat(getTotalMsg) as { message: string };
+      const formattedAiResponse = aiResponse.message.replace(/AI: /g, '');
+
+      console.log(aiResponse);
+      handleAddAiResponse(formattedAiResponse);
+
+    } catch (error) {
+      console.error('메세지 요청 에러');
+    }
+  };
 
   // AI 대화 요약 받아오기
-  function summaryAiResponse() {
-    return '마지막 요약 문장이지롱';
+  async function summaryAiResponse() {
+    try {
+      console.log(totalMessage());
+
+      const getTotalMsg = totalMessage();
+      const lastAiResponse = await summaryChat(getTotalMsg) as { message: string };
+      const formattedAiResponse = lastAiResponse.message.replace(/AI: /g, '');
+
+      console.log('마지막 대화' + formattedAiResponse);
+      handleAddAiResponse('To sum up your conversation,\n' + formattedAiResponse);
+
+    } catch (error) {
+      console.error('마지막 요약 메세지 요청 에러');
+    }
   }
 
   // 이미지 저장
@@ -75,44 +136,72 @@ function ChatPage() {
   }
 
   // 마지막 AI 메세지(summary), 이미지 url 세션 스토리지에 저장
-  function handleLastMessage() {
-    const getAnswerData = JSON.parse(sessionStorage.getItem('answerData') || '');
-    const answerData = { 
-      ...getAnswerData, 
-      summary: summaryAiResponse(),
-      url : generateImageUrl(),
-    };
+  // function handleLastMessage() {
+  //   setStoredData((prevData) => {
+  //     const updatedData = {
+  //       ...prevData,
+  //       summary: summaryAiResponse(),
+  //       url: generateImageUrl(),
+  //     };
 
-    sessionStorage.setItem('answerData', JSON.stringify(answerData));
+  //     sessionStorage.setItem('answerData', JSON.stringify(updatedData));
+
+  //     return updatedData;
+  //   });
+  // }
+
+  // 모달 핸들 함수
+  function handleModalShow() {
+    setShowModal((prev) => !prev);
   }
+
+  // 처음에 세션 스토리지 값 유효한지
+  useEffect(() => {
+    try {
+      const getAnswerData = JSON.parse(sessionStorage.getItem('answerData') || '');
+      setStoredData((prevData) => ({
+        ...prevData,
+        color: getAnswerData.color,
+        hexcode: getAnswerData.hexcode,
+        style: getAnswerData.style,
+      }));
+    } catch (err) {
+      handleModalShow();
+    }
+  }, []);
+
+  // 페이지가 시작되면 AI의 첫 번째 대화를 생성하여 보여줌
+  useEffect(() => {
+    const firstAiMessage: Message = {
+      id: 1,
+      content: 'How was your day today?'
+    };
+    setAiMsg([firstAiMessage]);
+    setIsDisabled(false);
+  }, []);
 
   // 진행도 설정
   useEffect(() => {
-    if (count < maxCount) {
+    if (count < MAX_COUNT) {
       setCount(userMsg.length);
     } 
   }, [count, userMsg.length]);
 
   // AI의 응답 생성 및 추가
   useEffect(() => {
-    // 임시로 2초 후에 보내기 (disabled 확인용)
-    if (userMsg.length === aiMsg.length) {
-      setTimeout(() => {
-        handleAddAiResponse(generateAiResponse());
-        setIsDisabled(false);
-      }, 2000);
+    // 빈 값이면 메세지 요청 안 보냄
+    const isNullAnswerData = storedData.color === '' || storedData.hexcode === '' || storedData.style === '';
+
+    if (userMsg.length === aiMsg.length && !isNullAnswerData && userMsg.length !== MAX_COUNT) {
+      generateAiResponse();
+    } 
+    // 마지막 요약 문장 추가
+     else if (userMsg.length === MAX_COUNT && aiMsg.length === MAX_COUNT) {
+      summaryAiResponse();
+      //handleLastMessage();
     }
 
-    // 마지막 요약 문장 추가
-    if (userMsg.length === maxCount && aiMsg.length === maxCount) {
-      setTimeout(() => {
-        handleAddAiResponse(summaryAiResponse());
-        setShowSpinner(true);
-        setIsDisabled(true);
-        handleLastMessage();
-      }, 2000);
-    }
-  }, [userMsg, aiMsg]);
+  }, [userMsg, aiMsg, storedData]);
 
   // 스크롤 위치 최신 대화에 맞도록
   useEffect(() => {
@@ -121,20 +210,21 @@ function ChatPage() {
     }
   }, [userMsg, aiMsg]);
 
-  // 시작 전 세션 스토리지 값 유효한지
-  useEffect(() => {
-    if (!sessionStorage.getItem('answerData')) {
-      alert('먼저 원하는 컬러와 화풍을 선택해주세요!');
-      navigate('/color-pick');
-    }
-  }, []);
-
   return (
     <Layout>
       <div className={styles.mainContainer}>
+        {showModal && 
+          <Modal 
+            modalType='navigate'
+            modalHandler={handleModalShow} 
+            modalMessage='원하는 컬러와 화풍을 선택해주세요'
+            navigateHandler={() => {
+              navigate('/color-pick');
+            }}
+          />}
         <ProgressBar 
           count={count} 
-          maxCount={maxCount}
+          maxCount={MAX_COUNT}
         />
         <div className={styles.chatContainer}>
           {showSpinner && <Loading />}
