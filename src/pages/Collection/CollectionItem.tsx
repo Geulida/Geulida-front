@@ -6,6 +6,7 @@ interface CollectionItemProps {
   data: {
     _id: string;
     color: string;
+    hexcode: string;
     style: string;
     summary: string;
     url: string;

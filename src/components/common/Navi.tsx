@@ -1,12 +1,14 @@
 import { useState } from 'react';
-
+import { useNavigate } from 'react-router';
 import styles from './Navi.module.scss';
 import { ReactComponent as Chat } from 'assets/Chat.svg';
 import { ReactComponent as Signup } from 'assets/Signup.svg';
 import { ReactComponent as Login } from 'assets/Login.svg';
 import Modal from './Modal';
+import { removeToken } from 'components/common/Fetcher/Token';
 
 function Navi() {
+  const navi = useNavigate();
   const [showModal, setShowModal] = useState<boolean>(false);
 
   const handleModalShow = () => {
@@ -17,9 +19,14 @@ function Navi() {
     handleModalShow();
   };
 
+  const handleLogout = () => {
+    removeToken();
+    navi('/');
+  };
+
   return (
     <>
-      {showModal && <Modal modalType='logout' modalHandler={handleModalShow} modalMessage='로그아웃 하시겠습니까?' />}
+      {showModal && <Modal modalType='logout' modalHandler={handleModalShow} logoutHandler={handleLogout} modalMessage='로그아웃 하시겠습니까?' />}
       <div className={styles.nav}>
         <nav>
           <div>
