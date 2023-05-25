@@ -42,15 +42,14 @@ function PainterPickPage() {
 
   const handleChange = (e: React.MouseEvent<HTMLLIElement>) => {
     const selectedPainter = e.currentTarget.textContent;
-    setPainterName(selectedPainter || '');
-    getImageUrlByName(selectedPainter || '');
+    getDataByName(selectedPainter || '');
   };
 
-  const getImageUrlByName = (selectedPainter: string) => {
+  const getDataByName = (selectedPainter: string) => {
     const pickOneArtist = artists.find((artist) => artist.name === selectedPainter);
     if (pickOneArtist) {
       setImageUrl(pickOneArtist.imageUrl);
-      console.log(painterName);
+      setPainterName(pickOneArtist.englishName);
     }
   };
 

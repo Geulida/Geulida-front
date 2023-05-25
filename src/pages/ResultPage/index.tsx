@@ -43,11 +43,9 @@ function ResultPage() {
     try {
       const getAnswerData = JSON.parse(sessionStorage.getItem('answerData') || '');
       setStoredData({ ...storedData, color: getAnswerData.color, hexcode: getAnswerData.hexcode, style: getAnswerData.style, summary: summary, url: url });
-      console.log(getAnswerData);
     } catch (err) {
       console.error('Json에 유효한 값이 들어오지 않음');
       handleModalShow();
-      console.log(showModal);
     }
   }, []);
 
