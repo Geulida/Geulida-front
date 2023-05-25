@@ -42,7 +42,7 @@ function ChatPage() {
   const navigate = useNavigate();
 
   // 최대 대화 가능 횟수
-  const MAX_COUNT = 10;
+  const MAX_COUNT = 3;
 
   // 모달 핸들 함수
   function handleModalShow() {
@@ -52,7 +52,7 @@ function ChatPage() {
   // 유저 메세지 입력 이벤트
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     setInputValue(e.target.value);
-  };
+  }
 
   // 유저 메세지 보내기 버튼 클릭 이벤트
   function handleClick() {
@@ -62,10 +62,10 @@ function ChatPage() {
         const newUserMessage = [...userMsg];
         newUserMessage.push({
           id: userMsg.length + 1,
-          content: inputValue
+          content: inputValue,
         });
         return newUserMessage;
-      })
+      });
       setInputValue('');
     }
   }
@@ -76,7 +76,7 @@ function ChatPage() {
       const newAiMessage = [...aiMsg];
       newAiMessage.push({
         id: aiMsg.length + 1,
-        content: message
+        content: message,
       });
       return newAiMessage;
     });
@@ -107,16 +107,15 @@ function ChatPage() {
       console.log(totalMessage());
 
       const getTotalMsg = totalMessage();
-      const aiResponse = await generateChat(getTotalMsg) as { message: string };
+      const aiResponse = (await generateChat(getTotalMsg)) as { message: string };
       const formattedAiResponse = aiResponse.message.replace(/AI: /g, '');
 
       console.log(aiResponse);
       handleAddAiResponse(formattedAiResponse);
-
     } catch (error) {
       console.error('메세지 요청 에러');
     }
-  };
+  }
 
   // AI 대화 요약 받아오기
   async function summaryAiResponse() {
@@ -124,7 +123,7 @@ function ChatPage() {
       console.log(totalMessage());
 
       const getTotalMsg = totalMessage();
-      const lastAiResponse = await summaryChat(getTotalMsg) as { message: string };
+      const lastAiResponse = (await summaryChat(getTotalMsg)) as { message: string };
       const formattedAiResponse = lastAiResponse.message.replace(/AI: /g, '');
 
       console.log('마지막 대화' + formattedAiResponse);
@@ -141,12 +140,12 @@ function ChatPage() {
     try {
       // hexcode 추가되어야 함
       const { color, style } = storedData;
-      const summaryResponse = await summaryAiResponse() as string;
-      const image = await makeImage(color, style, summaryResponse) as { url: string };
-      
+      const summaryResponse = (await summaryAiResponse()) as string;
+      const image = (await makeImage(color, style, summaryResponse)) as { url: string };
+
       console.log(image);
 
-      setStoredData(prevData => ({
+      setStoredData((prevData) => ({
         ...prevData,
         summary: summaryResponse,
         url: image.url,
@@ -156,7 +155,6 @@ function ChatPage() {
       sessionStorage.setItem('answerData', JSON.stringify(answerData));
 
       navigate('/result');
-
     } catch (error) {
       console.error('이미지 요청 에러');
     }
@@ -181,7 +179,7 @@ function ChatPage() {
   useEffect(() => {
     const firstAiMessage: Message = {
       id: 1,
-      content: 'How was your day today?'
+      content: 'How was your day today?',
     };
     setAiMsg([firstAiMessage]);
     setIsDisabled(false);
@@ -191,7 +189,7 @@ function ChatPage() {
   useEffect(() => {
     if (count < MAX_COUNT) {
       setCount(userMsg.length);
-    } 
+    }
   }, [count, userMsg.length]);
 
   // AI의 응답 생성 및 추가
@@ -200,12 +198,9 @@ function ChatPage() {
 
     if (userMsg.length === aiMsg.length && !isNullAnswerData && userMsg.length !== MAX_COUNT) {
       generateAiResponse();
-    } 
-
-    else if (userMsg.length === MAX_COUNT && aiMsg.length === MAX_COUNT) {
+    } else if (userMsg.length === MAX_COUNT && aiMsg.length === MAX_COUNT) {
       generateImageUrl();
     }
-
   }, [userMsg, aiMsg, storedData]);
 
   // 스크롤 위치 최신 대화에 맞도록
@@ -218,32 +213,21 @@ function ChatPage() {
   return (
     <Layout>
       <div className={styles.mainContainer}>
-        {showModal && 
-          <Modal 
+        {showModal && (
+          <Modal
             modalType='navigate'
-            modalHandler={handleModalShow} 
+            modalHandler={handleModalShow}
             modalMessage='원하는 컬러와 화풍을 선택해주세요'
             navigateHandler={() => {
               navigate('/color-pick');
             }}
-          />}
-        <ProgressBar 
-          count={count} 
-          maxCount={MAX_COUNT}
-        />
+          />
+        )}
+        <ProgressBar count={count} maxCount={MAX_COUNT} />
         <div className={styles.chatContainer}>
           {showSpinner && <Loading />}
-          <MessageContainer 
-            aiMsg={aiMsg} 
-            userMsg={userMsg} 
-            scrollRef={scrollRef}
-          />
-          <InputContainer
-            inputValue={inputValue}
-            isDisabled={isDisabled}
-            handleInputChange={handleInputChange}
-            handleClick={handleClick}
-          />
+          <MessageContainer aiMsg={aiMsg} userMsg={userMsg} scrollRef={scrollRef} />
+          <InputContainer inputValue={inputValue} isDisabled={isDisabled} handleInputChange={handleInputChange} handleClick={handleClick} />
         </div>
       </div>
     </Layout>

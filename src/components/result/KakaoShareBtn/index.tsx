@@ -5,15 +5,12 @@ import styles from './kakaoShareBtn.module.scss';
 
 const { Kakao } = window;
 
-function KakaoShareBtn() {
-  // 실제 API 요청 데이터
-  // const getAnswerData = JSON.parse(sessionStorage.getItem('answerData') || '');
-  // const { summary:description, result:imageUrl } = getAnswerData;
+interface KakaoShareBtnProps {
+  imageUrl: string;
+  description: string;
+}
 
-  // API 요청 mock data
-  const description = '렘브란트';
-  const imageUrl = 'https://cdn.veritas-a.com/news/photo/old/2/admin_1198640645.jpg';
-
+function KakaoShareBtn({ imageUrl, description }: KakaoShareBtnProps) {
   useEffect(() => {
     if (!Kakao.isInitialized()) {
       Kakao.init(process.env.REACT_APP_KAKAO_KEY);

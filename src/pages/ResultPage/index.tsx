@@ -7,16 +7,6 @@ import KakaoShareBtn from '../../components/result/KakaoShareBtn';
 import GallerySaveBtn from '../../components/result/GallerySaveBtn';
 import ImageSaveBtn from '../../components/result/ImageSaveBtn';
 
-// 갤러리 저장버튼을 누르면 api이미지 저장
-// result page에서 session에 저장되어있는 객체를 불러와야함
-/**
- * ! 구현 시나리오
- * 1. result page가 렌더링될 때 session에 저장되어 있는 객체를 한번만 불러온다.
- * 2. 갤러리 저장 버튼을 누르면 api/collection (POST) 요청을 보낸다.
- * 3. 갤러리 저장 버튼이 컴포넌트로 구현되어있으니, 여기서 api 부착하고 button 클릭 이벤트 props로 gellerysavebtn에 전달한다.
- *
- */
-// const storedData = sessionStorage.getItem('answerData');
 interface data {
   color: string;
   hexcode: string;
@@ -36,19 +26,24 @@ function ResultPage() {
   });
   const navigate = useNavigate();
 
-  const summary = 'summary';
-  const url = 'https://cdn.veritas-a.com/news/photo/old/2/admin_1198640645.jpg';
-
+  const url = 'https://images.unsplash.com/photo-1684242269917-afdd589f20bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60';
   useEffect(() => {
     try {
       const getAnswerData = JSON.parse(sessionStorage.getItem('answerData') || '');
-      setStoredData({ ...storedData, color: getAnswerData.color, hexcode: getAnswerData.hexcode, style: getAnswerData.style, summary: summary, url: url });
+      setStoredData((prevData) => ({
+        ...prevData,
+        color: getAnswerData.color,
+        hexcode: getAnswerData.hexcode,
+        style: getAnswerData.style,
+        summary: getAnswerData.summary,
+        url: url,
+      }));
     } catch (err) {
-      console.error('Json에 유효한 값이 들어오지 않음');
+      console.error('세션 스토리지가 비어있거나 유효한 값이 아닙니다.');
       handleModalShow();
     }
   }, []);
-
+  console.log(storedData);
   function handleModalShow() {
     setShowModal((prev) => !prev);
   }
@@ -68,14 +63,14 @@ function ResultPage() {
       <div className={styles.resultPageContainer}>
         <section className={styles.resultContents}>
           <div className={styles.imageWrapper}>
-            <img src='https://cdn.veritas-a.com/news/photo/old/2/admin_1198640645.jpg' />
+            <img src={storedData.url} alt='result image' />
           </div>
-          <div className={styles.resultContentsText}>결과 한 줄</div>
+          <div className={styles.resultContentsText}>{storedData.summary}</div>
         </section>
         <section className={styles.resultBtnContainer}>
-          <ImageSaveBtn />
+          <ImageSaveBtn imageUrl={storedData.url} />
           <GallerySaveBtn storedData={storedData} />
-          <KakaoShareBtn />
+          <KakaoShareBtn imageUrl={storedData.url} description={storedData.summary} />
         </section>
       </div>
     </div>
