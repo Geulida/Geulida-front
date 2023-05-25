@@ -7,7 +7,7 @@ import ProgressBar from './ProgressBar';
 import MessageContainer from './MessageContainer';
 import InputContainer from './InputContainer';
 import Loading from './Loading';
-import { generateChat, summaryChat } from 'components/common/Fetcher/Fetcher';
+import { generateChat, summaryChat, makeImage } from 'components/common/Fetcher/Fetcher';
 
 export interface Message {
   id: number;
@@ -43,6 +43,11 @@ function ChatPage() {
 
   // 최대 대화 가능 횟수
   const MAX_COUNT = 10;
+
+  // 모달 핸들 함수
+  function handleModalShow() {
+    setShowModal((prev) => !prev);
+  }
 
   // 유저 메세지 입력 이벤트
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -84,10 +89,10 @@ function ChatPage() {
     }
   }
 
+  // 사용자 대화와 AI 대화를 번갈아가며 누적하여 문자열로 생성
   function totalMessage() {
     let totalMsg = '';
 
-    // 사용자 대화와 AI 대화를 번갈아가며 누적하여 문자열로 생성
     for (let i = 0; i < userMsg.length; i++) {
       totalMsg += `AI: ${aiMsg[i].content}\n`;
       totalMsg += `USER: ${userMsg[i].content}\n`;
@@ -125,34 +130,36 @@ function ChatPage() {
       console.log('마지막 대화' + formattedAiResponse);
       handleAddAiResponse('To sum up your conversation,\n' + formattedAiResponse);
 
+      return formattedAiResponse;
     } catch (error) {
       console.error('마지막 요약 메세지 요청 에러');
     }
   }
 
-  // 이미지 저장
-  function generateImageUrl() {
-    return '나중에 받아올 이미지 여기에 저장하기';
-  }
+  // 이미지 url 받아오기
+  async function generateImageUrl() {
+    try {
+      // hexcode 추가되어야 함
+      const { color, style } = storedData;
+      const summaryResponse = await summaryAiResponse() as string;
+      const image = await makeImage(color, style, summaryResponse) as { url: string };
+      
+      console.log(image);
 
-  // 마지막 AI 메세지(summary), 이미지 url 세션 스토리지에 저장
-  // function handleLastMessage() {
-  //   setStoredData((prevData) => {
-  //     const updatedData = {
-  //       ...prevData,
-  //       summary: summaryAiResponse(),
-  //       url: generateImageUrl(),
-  //     };
+      setStoredData(prevData => ({
+        ...prevData,
+        summary: summaryResponse,
+        url: image.url,
+      }));
 
-  //     sessionStorage.setItem('answerData', JSON.stringify(updatedData));
+      const answerData = { ...storedData, summary: summaryResponse, url: image.url };
+      sessionStorage.setItem('answerData', JSON.stringify(answerData));
 
-  //     return updatedData;
-  //   });
-  // }
+      navigate('/result');
 
-  // 모달 핸들 함수
-  function handleModalShow() {
-    setShowModal((prev) => !prev);
+    } catch (error) {
+      console.error('이미지 요청 에러');
+    }
   }
 
   // 처음에 세션 스토리지 값 유효한지
@@ -189,16 +196,14 @@ function ChatPage() {
 
   // AI의 응답 생성 및 추가
   useEffect(() => {
-    // 빈 값이면 메세지 요청 안 보냄
     const isNullAnswerData = storedData.color === '' || storedData.hexcode === '' || storedData.style === '';
 
     if (userMsg.length === aiMsg.length && !isNullAnswerData && userMsg.length !== MAX_COUNT) {
       generateAiResponse();
     } 
-    // 마지막 요약 문장 추가
-     else if (userMsg.length === MAX_COUNT && aiMsg.length === MAX_COUNT) {
-      summaryAiResponse();
-      //handleLastMessage();
+
+    else if (userMsg.length === MAX_COUNT && aiMsg.length === MAX_COUNT) {
+      generateImageUrl();
     }
 
   }, [userMsg, aiMsg, storedData]);

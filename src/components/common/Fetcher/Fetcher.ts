@@ -40,7 +40,7 @@ async function saveIntoCollection(data: data) {
   return await Api.post(domain, 'collection', data);
 }
 
-// Chat 
+// Chat 생성하기
 async function generateChat(message: string) {
   const data = {
     message: message,
@@ -56,5 +56,14 @@ async function summaryChat(message: string) {
   return await Api.post(domain, 'chat/last', data, false);
 }
 
+// 이미지 생성하기
+async function makeImage(color: string, style: string, summary: string) {
+  const data = {
+    color: color, 
+    style: style, 
+    summary: summary,
+  };
+  return await Api.post(domain, 'img', data, false);
+}
 
-export { userLogin, userRegister, userCollection, saveIntoCollection, generateChat, summaryChat };
+export { userLogin, userRegister, userCollection, saveIntoCollection, generateChat, summaryChat, makeImage };
