@@ -36,7 +36,7 @@ function ResultPage() {
         hexcode: getAnswerData.hexcode,
         style: getAnswerData.style,
         summary: getAnswerData.summary,
-        url: url,
+        url: getAnswerData.url,
       }));
     } catch (err) {
       console.error('세션 스토리지가 비어있거나 유효한 값이 아닙니다.');
