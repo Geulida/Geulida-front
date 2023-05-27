@@ -48,5 +48,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "https://port-0-geulida-back-lhe2bli1h434z.sel4.cloudtype.app"
 }
