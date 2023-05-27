@@ -6,6 +6,7 @@ import Button from 'components/common/Button/Button';
 import styles from './Login.module.scss';
 import { userLogin } from 'components/common/Fetcher/Fetcher';
 import { setToken } from 'components/common/Fetcher/Token';
+import axios from 'axios';
 
 function Login() {
   const [email, setEmail] = useState('');

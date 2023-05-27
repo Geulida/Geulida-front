@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import Headline from 'components/common/Headline';
 import styles from './CollectionPage.module.scss';
-import dummy from 'assets/dummyCollection.json';
 import CollectionItem from './CollectionItem';
 import { userCollection } from 'components/common/Fetcher/Fetcher';
 

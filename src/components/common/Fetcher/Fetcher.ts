@@ -1,6 +1,6 @@
 import * as Api from './Api';
 
-const domain = `https://port-0-geulida-back-lhe2bli1h434z.sel4.cloudtype.app/api`;
+const domain = `https://port-0-geulida-back-7e6o2cli5yrpbf.sel4.cloudtype.app/api`;
 
 interface data {
   color: string;
@@ -59,8 +59,8 @@ async function summaryChat(message: string) {
 // 이미지 생성하기
 async function makeImage(color: string, style: string, summary: string) {
   const data = {
-    color: color, 
-    style: style, 
+    color: color,
+    style: style,
     summary: summary,
   };
   return await Api.post(domain, 'img', data, false);
