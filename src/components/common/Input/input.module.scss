@@ -1,0 +1,29 @@
+.input__container {
+  display: flex;
+}
+
+.input {
+  box-sizing: border-box;
+
+  width: 300px;
+  height: 50px;
+
+  border: 1px solid #FFFFFF;
+  border-radius: 100px;
+
+  color: #FFFFFF;
+  background-color: transparent;
+  
+  outline: none;
+
+  margin: 20px 0;
+  padding: 15px;
+
+  &::placeholder {
+    color: #FFFFFF;
+  }
+
+  &:last-child {
+    margin-top: 0px;
+  }
+}

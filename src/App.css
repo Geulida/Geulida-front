@@ -1,0 +1,81 @@
+/* font */
+@font-face {
+  font-family: 'S-CoreDream-3Light';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* css reset */
+* {
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  font-family: 'S-CoreDream-3Light';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+:root {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  cursor: default;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  tab-size: 4;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* global css */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+body {
+  background: linear-gradient(45deg, #5ec5ce, #5991d1, #e5bdc6, #80bccc, #80a1cc, #e5bdc6, #80bccc);
+  background-size: 400% 400%;
+  animation: gradient 40s ease infinite;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+header {
+  width: 350px;
+  height: 100vh;
+  display: flex;
+  flex-shrink: 0;
+}

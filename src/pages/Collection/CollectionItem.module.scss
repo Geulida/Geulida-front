@@ -1,0 +1,22 @@
+.picDiv {
+  width: 450px;
+  height: 450px;
+  margin: 0 0 80px 0;
+  display: inline-block;
+  border-radius: 1rem;
+  cursor: pointer;
+  overflow: hidden;
+}
+.pic {
+  width: 450px;
+  height: 450px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: inherit;
+
+  &:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-out;
+  }
+}
