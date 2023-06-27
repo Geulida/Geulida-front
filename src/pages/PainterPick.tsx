@@ -5,9 +5,9 @@ import { ReactComponent as RightArrow } from 'assets/RightArrow.svg';
 import { ReactComponent as LeftArrow } from 'assets/LeftArrow.svg';
 
 import Modal from 'components/common/Modal';
-import CustomSelect from './PainterPickPage/CustomSelect';
+import CustomSelect from 'components/chat/CustomSelect';
 
-import styles from './painterPick.module.scss';
+import styles from './PainterPick.module.scss';
 import artists from 'assets/painterData.json';
 
 function PainterPick() {
@@ -56,7 +56,7 @@ function PainterPick() {
   return (
     <div className={styles.container}>
       {showModal && <Modal modalType='confirm' modalHandler={handleModalShow} modalMessage='원하는 화풍을 선택해주세요' />}
-      <button className={styles.prevButton} onClick={() => navigate(-1)}>
+      <button type='button' className={styles.prevButton} onClick={() => navigate(-1)}>
         <LeftArrow className={styles.arrowLeft} />
       </button>
       <div className={styles.painterPickerWrapper} ref={PainterPickerRef}>
@@ -66,7 +66,7 @@ function PainterPick() {
         <CustomSelect value={painterName} onClick={handleChange} />
       </div>
 
-      <button className={styles.nextButton} onClick={handleNext}>
+      <button type='button' className={styles.nextButton} onClick={handleNext}>
         <RightArrow className={styles.arrowRight} />
       </button>
     </div>

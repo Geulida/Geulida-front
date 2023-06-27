@@ -6,7 +6,7 @@ import { GetColorName } from 'hex-color-to-color-name';
 
 import Modal from 'components/common/Modal';
 
-import styles from './colorPick.module.scss';
+import styles from './ColorPick.module.scss';
 import { ReactComponent as RightArrow } from 'assets/RightArrow.svg';
 
 function ColorPick() {
@@ -77,7 +77,7 @@ function ColorPick() {
         </div>
       </div>
 
-      <button className={styles.nextButton} onClick={handleNext}>
+      <button type='button' className={styles.nextButton} onClick={handleNext}>
         <RightArrow className={styles.arrowRight} />
       </button>
     </div>

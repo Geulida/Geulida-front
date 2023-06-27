@@ -52,14 +52,14 @@
   background-color: transparent;
   width: 50px;
   height: 50px;
-}
 
-.nextButton svg {
-  transition: all 0.2s;
-}
+  .nextButton svg {
+    transition: all 0.2s;
+  }
 
-.nextButton:hover svg {
-  stroke: #e5bdc6;
+  .nextButton:hover svg {
+    stroke: #e5bdc6;
+  }
 }
 
 .prevButton {
@@ -71,86 +71,12 @@
   background-color: transparent;
   width: 50px;
   height: 50px;
-}
 
-.prevButton svg {
-  transition: all 0.2s;
-}
-
-.prevButton:hover svg {
-  stroke: #e5bdc6;
-}
-
-/* 드롭다운 메뉴 */
-
-.painterPickerDropDownWrapper {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-  justify-items: center;
-  z-index: 1;
-  cursor: pointer;
-}
-
-.painterPickerDropDown {
-  width: 300px;
-  height: 50px;
-
-  display: flex;
-  align-items: center;
-  justify-items: center;
-  text-align: center;
-
-  justify-content: space-around;
-
-  font-size: 20px;
-  font-weight: bold;
-
-  background: #ffffff;
-  border-radius: 10px;
-  border: 5px solid #e5bdc6;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.selectOptions {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-
-  margin-top: 10px;
-  height: 200px;
-
-  font-size: 20px;
-  overflow-y: scroll;
-  background-color: #e5bdc6;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  z-index: 2;
-
-  &::-webkit-scrollbar {
-    width: 8px;
-    margin-right: 2px;
+  .prevButton svg {
+    transition: all 0.2s;
   }
 
-  &::-webkit-scrollbar-thumb {
-    background-color: #e69dad;
-    border-radius: 25px;
+  .prevButton:hover svg {
+    stroke: #e5bdc6;
   }
-  &::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 25px;
-  }
-}
-
-.selectOption {
-  padding: 10px;
-  border-bottom: 1px dotted #eaeaea;
-  &:hover {
-    background-color: #e69dad;
-  }
-}
-
-.selectOption:last-child {
-  border-bottom: none;
 }
