@@ -60,13 +60,7 @@ function PainterPickPage() {
         <LeftArrow className={styles.arrowLeft} />
       </button>
       <div className={styles.painterPickerWrapper} ref={PainterPickerRef}>
-        <div
-          className={styles.painterPickerCircle}
-          style={{
-            backgroundImage: `url(${imageUrl})`,
-          }}
-        />
-
+        <div className={styles.painterPickerCircle} style={imageUrl ? { backgroundImage: `url(${imageUrl})` } : {}} />
         <div className={styles.question2}>Q2. 원하는 화풍을 선택해주세요</div>
         <p className={styles.notification}>※ 다음으로 넘어가면 대화가 시작됩니다.</p>
         <CustomSelect value={painterName} onClick={handleChange} />
