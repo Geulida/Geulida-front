@@ -4,7 +4,7 @@ import styles from './Signup.module.scss';
 import Button from 'components/common/Button/Button';
 import Headline from 'components/common/Headline';
 import SignupInput from './SignupInput';
-import { userRegister } from 'components/common/Fetcher/Fetcher';
+import { userRegister } from 'api/fetcher';
 
 function Signup() {
   const navi = useNavigate();

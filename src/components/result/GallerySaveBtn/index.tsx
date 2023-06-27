@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { saveIntoCollection } from '../../common/Fetcher/Fetcher';
+import { saveIntoCollection } from '../../../api/fetcher';
 
 import { ReactComponent as PhotoPlus } from 'assets/PhotoPlus.svg';
 import styles from './gallerySaveBtn.module.scss';

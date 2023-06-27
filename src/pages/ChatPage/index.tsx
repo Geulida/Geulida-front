@@ -7,7 +7,7 @@ import ProgressBar from './ProgressBar';
 import MessageContainer from './MessageContainer';
 import InputContainer from './InputContainer';
 import Loading from './Loading';
-import { generateChat, summaryChat, makeImage } from 'components/common/Fetcher/Fetcher';
+import { generateChat, summaryChat, makeImage } from 'api/fetcher';
 
 export interface Message {
   id: number;

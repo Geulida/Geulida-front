@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as Token from './Token';
+import * as Token from './token';
 
 interface RequestParams<T> {
   endpoint: string;

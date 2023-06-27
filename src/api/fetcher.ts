@@ -1,4 +1,4 @@
-import * as Api from './Api';
+import * as Api from './api';
 
 const domain = process.env.REACT_APP_SERVER_DOMAIN as string;
 
