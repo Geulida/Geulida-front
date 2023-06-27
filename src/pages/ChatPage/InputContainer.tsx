@@ -22,7 +22,7 @@ function InputContainer({ inputValue, isDisabled, handleInputChange, handleClick
         disabled={isDisabled}
       />
 
-      <button className={styles.button} onClick={handleClick} disabled={isDisabled}>
+      <button className={styles.button} onClick={handleClick} disabled={isDisabled} value='submit'>
         <Send />
       </button>
     </div>
