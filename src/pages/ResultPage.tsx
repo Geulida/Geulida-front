@@ -5,8 +5,6 @@ import styles from './ResultPage.module.scss';
 import Modal from 'components/common/Modal';
 import KakaoShareBtn from 'components/result/KakaoShareBtn/KakaoShareBtn';
 import GallerySaveBtn from 'components/result/GallerySaveBtn';
-import ImageSaveBtn from 'components/result/ImageSaveBtn';
-
 interface data {
   color: string;
   hexcode: string;
@@ -67,10 +65,10 @@ function ResultPage() {
           <div className={styles.resultContentsText}>{storedData.summary}</div>
         </section>
         <section className={styles.resultBtnContainer}>
-          <ImageSaveBtn imageUrl={storedData.url} />
           <GallerySaveBtn storedData={storedData} />
           <KakaoShareBtn imageUrl={storedData.url} description={storedData.summary} />
         </section>
+        <p className={styles.imageText}>※ 이미지 저장 시 마우스 우클릭을 눌러주세요 ※</p>
       </div>
     </div>
   );
