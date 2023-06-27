@@ -5,7 +5,6 @@ import styles from './ResultPage.module.scss';
 import Modal from 'components/common/Modal';
 import KakaoShareBtn from 'components/result/KakaoShareBtn/KakaoShareBtn';
 import GallerySaveBtn from 'components/result/GallerySaveBtn';
-import ImageSaveBtn from 'components/result/ImageSaveBtn';
 
 interface data {
   color: string;
@@ -42,7 +41,7 @@ function ResultPage() {
       handleModalShow();
     }
   }, []);
-  console.log(storedData);
+
   function handleModalShow() {
     setShowModal((prev) => !prev);
   }
@@ -67,7 +66,6 @@ function ResultPage() {
           <div className={styles.resultContentsText}>{storedData.summary}</div>
         </section>
         <section className={styles.resultBtnContainer}>
-          <ImageSaveBtn imageUrl={storedData.url} />
           <GallerySaveBtn storedData={storedData} />
           <KakaoShareBtn imageUrl={storedData.url} description={storedData.summary} />
         </section>

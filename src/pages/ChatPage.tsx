@@ -42,7 +42,7 @@ function ChatPage() {
   const navigate = useNavigate();
 
   // 최대 대화 가능 횟수
-  const MAX_COUNT = 10;
+  const MAX_COUNT = 3;
 
   // 모달 핸들 함수
   function handleModalShow() {
