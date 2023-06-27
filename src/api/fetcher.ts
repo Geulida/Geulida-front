@@ -45,7 +45,7 @@ async function generateChat(message: string) {
   const data = {
     message: message,
   };
-  return await Api.post(domain, 'chat', data, false);
+  return await Api.post(domain, 'chat', data, true);
 }
 
 // 마지막 요약 문장
@@ -53,7 +53,7 @@ async function summaryChat(message: string) {
   const data = {
     message: message,
   };
-  return await Api.post(domain, 'chat/last', data, false);
+  return await Api.post(domain, 'chat/last', data, true);
 }
 
 // 이미지 생성하기
@@ -63,7 +63,7 @@ async function makeImage(color: string, style: string, summary: string) {
     style: style,
     summary: summary,
   };
-  return await Api.post(domain, 'img', data, false);
+  return await Api.post(domain, 'img', data, true);
 }
 
 export { userLogin, userRegister, userCollection, saveIntoCollection, generateChat, summaryChat, makeImage };
