@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import styles from './ResultPage.module.scss';
 
 import Modal from 'components/common/Modal';
-import KakaoShareBtn from '../components/result/KakaoShareBtn/KakaoShareBtn';
-import GallerySaveBtn from '../components/result/GallerySaveBtn';
-import ImageSaveBtn from '../components/result/ImageSaveBtn';
+import KakaoShareBtn from 'components/result/KakaoShareBtn/KakaoShareBtn';
+import GallerySaveBtn from 'components/result/GallerySaveBtn';
+import ImageSaveBtn from 'components/result/ImageSaveBtn';
 
 interface data {
   color: string;

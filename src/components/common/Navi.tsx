@@ -5,7 +5,7 @@ import { ReactComponent as Chat } from 'assets/Chat.svg';
 import { ReactComponent as Signup } from 'assets/Signup.svg';
 import { ReactComponent as Login } from 'assets/Login.svg';
 import Modal from './Modal';
-import { removeToken } from 'api/Token';
+import { removeToken } from 'api/token';
 
 function Navi() {
   const navi = useNavigate();
