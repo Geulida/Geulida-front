@@ -1,36 +1,37 @@
-.resultPage {
+.layout {
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100vh;
   justify-content: center;
   align-items: center;
-  padding-right: 180px;
 }
 
 .resultPageContainer {
   display: flex;
   flex-direction: column;
-
+  gap: 2rem;
   width: 800px;
-  height: 100vh;
-
+  padding: 10rem 0;
   justify-content: center;
   align-items: center;
   text-align: center;
+  background: linear-gradient(170deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4));
+  border-radius: 0.8rem;
+  box-shadow: -15px -15px 30px rgba(255, 255, 255, 0.25), -1px -2px 2px rgba(255, 255, 255, 0.25), 15px 15px 30px rgba(101, 97, 134, 0.25);
   .resultContents {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 50px;
   }
   .resultContentsText {
-    background-color: rgba(255, 255, 255, 0.5);
+    background: linear-gradient(170deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.5));
+
     border-radius: 10px;
-    padding: 8px;
+    padding: 2rem;
     width: 620px;
-    font-size: 20px;
+    font-size: 14pt;
     font-weight: bold;
   }
   .imageWrapper {
@@ -49,14 +50,12 @@
       background-repeat: no-repeat;
       background-position: center;
     }
-
-    margin-bottom: 50px;
   }
 }
 .imageText {
   color: white;
-  margin-top: 40px;
-  font-size: 15px;
+  font-size: 11pt;
+  margin: 1rem 0;
 }
 .resultBtnContainer {
   display: flex;
@@ -64,5 +63,6 @@
 
   width: 100%;
 
-  justify-content: space-around;
+  justify-content: center;
+  gap: 2rem;
 }

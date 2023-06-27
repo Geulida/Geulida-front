@@ -57,18 +57,20 @@ function ResultPage() {
           }}
         />
       )}
-      <div className={styles.resultPageContainer}>
-        <section className={styles.resultContents}>
-          <div className={styles.imageWrapper}>
-            <img src={storedData.url} alt='result' />
-          </div>
-          <div className={styles.resultContentsText}>{storedData.summary}</div>
-        </section>
-        <section className={styles.resultBtnContainer}>
-          <GallerySaveBtn storedData={storedData} />
-          <KakaoShareBtn imageUrl={storedData.url} description={storedData.summary} />
-        </section>
-        <p className={styles.imageText}>※ 이미지 저장 시 마우스 우클릭을 눌러주세요 ※</p>
+      <div className={styles.layout}>
+        <div className={styles.resultPageContainer}>
+          <section className={styles.resultContents}>
+            <div className={styles.imageWrapper}>
+              <img src={storedData.url} alt='result' />
+            </div>
+            <p className={styles.imageText}>※ 이미지 저장 시 마우스 우클릭을 눌러주세요 ※</p>
+            <div className={styles.resultContentsText}>{storedData.summary}</div>
+          </section>
+          <section className={styles.resultBtnContainer}>
+            <GallerySaveBtn storedData={storedData} />
+            <KakaoShareBtn imageUrl={storedData.url} description={storedData.summary} />
+          </section>
+        </div>
       </div>
     </div>
   );
