@@ -1,6 +1,6 @@
 import * as Api from './Api';
 
-const domain = `https://port-0-geulida-back-7e6o2cli5yrpbf.sel4.cloudtype.app/api`;
+const domain = process.env.REACT_APP_SERVER_DOMAIN as string;
 
 interface data {
   color: string;

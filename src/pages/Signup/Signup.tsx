@@ -86,7 +86,7 @@ function Signup() {
     try {
       const response: any = await userRegister(name, id, password);
       const msg = response.message;
-      if (msg === '회원가입 성공하셨습니다') {
+      if (msg === '회원가입에 성공하셨습니다') {
         alert('회원가입에 성공하였습니다.');
         navi('/');
       }
