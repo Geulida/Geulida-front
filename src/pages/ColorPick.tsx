@@ -8,6 +8,7 @@ import Modal from 'components/common/Modal';
 
 import styles from './ColorPick.module.scss';
 import { ReactComponent as RightArrow } from 'assets/RightArrow.svg';
+import { ReactComponent as LeftArrow } from 'assets/LeftArrow.svg';
 
 function ColorPick() {
   const [isShown, setIsShown] = useState<boolean>(false);
@@ -59,7 +60,9 @@ function ColorPick() {
   return (
     <div className={styles.container}>
       {showModal && <Modal modalType='confirm' modalHandler={handleModalShow} modalMessage='원하는 컬러를 선택해주세요' />}
-      <div className={styles.left}></div>
+      <button type='button' className={styles.prevButton} onClick={() => navigate(-1)}>
+        <LeftArrow className={styles.arrowLeft} />
+      </button>
       <div className={styles.colorPickerWrapper} ref={colorPickerRef}>
         {isShown && <ChromePicker className={styles.colorPicker} onChange={handleChangeColorPicker} color={colorPickerHex} />}
         <div

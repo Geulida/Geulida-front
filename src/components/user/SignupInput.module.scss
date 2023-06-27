@@ -4,8 +4,8 @@
   margin-left: 20px;
   margin-bottom: 5px;
   color: #ffffff;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 12pt;
+  font-weight: 500;
   outline: none;
 }
 
@@ -17,16 +17,17 @@
   border: 2px solid #ffffff;
   border-radius: 4rem;
 
-  color: #ffffff;
-  font-size: 18px;
+  color: #8085cc;
+  font-size: 16pt;
   background-color: transparent;
   outline: none;
   padding-left: 30px;
   transition: all 0.3s ease;
   &:focus {
     outline: none;
-    background-color: rgba($color: #ffffff, $alpha: 0.85);
-    color: #80a1cc;
+    background: linear-gradient(170deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));
+
+    color: #8085cc;
   }
 
   &::placeholder {
@@ -39,8 +40,8 @@ span {
   text-align: left;
   margin-top: 5px;
   margin-left: 20px;
-  color: #ffd2dd;
-  font-size: 16px;
+  color: #8085cc;
+  font-size: 10pt;
   font-weight: 700;
   outline: none;
 }

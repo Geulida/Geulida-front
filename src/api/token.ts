@@ -1,21 +1,16 @@
-// 토큰을 쿠키에 저장합니다.
+// 토큰을 로컬스토리지에 저장합니다.
 function setToken(tokenValue: string) {
-  document.cookie = `token=${tokenValue}; path=/`;
+  localStorage.setItem('token', tokenValue);
 }
 
-// 쿠키에 저장한 토큰 값을 반환합니다.
+// 로컬스토리지에 저장한 토큰 값을 반환합니다.
 function getToken(): string | null {
-  const cookies = document.cookie.split('; ');
-  for (let cookie of cookies) {
-    const [key, value] = cookie.split('=');
-    return key === 'token' ? value : null;
-  }
-  return null;
+  return localStorage.getItem('token');
 }
 
-// 쿠키에 저장된 토큰을 삭제합니다.
+// 로컬스토리지에 저장된 토큰을 삭제합니다.
 function removeToken(): void {
-  document.cookie = 'token=; expires=Sun, 01 Jan 2023 00:00:00 UTC; path=/;';
+  localStorage.clear();
 }
 
 export { setToken, getToken, removeToken };

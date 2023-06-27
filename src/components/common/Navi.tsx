@@ -1,42 +1,22 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { NavLink, useNavigate } from 'react-router-dom';
 import styles from './Navi.module.scss';
 import { ReactComponent as Chat } from 'assets/Chat.svg';
 import { ReactComponent as Signup } from 'assets/Signup.svg';
 import { ReactComponent as Login } from 'assets/Login.svg';
+import { ReactComponent as Collection } from 'assets/Collection.svg';
+import { ReactComponent as Logout } from 'assets/Logout.svg';
 import Modal from './Modal';
-import { removeToken } from 'api/token';
+import { getToken, removeToken } from 'api/token';
 
 function Navi() {
   const navi = useNavigate();
+  const auth = getToken();
   const [showModal, setShowModal] = useState(false);
   const [isChatClicked, setIsChatClicked] = useState(false);
-  const [isSignupClicked, setIsSignupClicked] = useState(false);
-  const [isLoginClicked, setIsLoginClicked] = useState(false);
 
   const handleModalShow = () => {
     setShowModal((prev) => !prev);
-  };
-
-  const handleChatClick = () => {
-    setIsChatClicked(true);
-    setIsSignupClicked(false);
-    setIsLoginClicked(false);
-    navi('/color-pick');
-  };
-
-  const handleSignupClick = () => {
-    setIsChatClicked(false);
-    setIsSignupClicked(true);
-    setIsLoginClicked(false);
-    navi('/signup');
-  };
-
-  const handleLoginClick = () => {
-    setIsChatClicked(false);
-    setIsSignupClicked(false);
-    setIsLoginClicked(true);
-    navi('/');
   };
 
   const handleLogout = () => {
@@ -45,38 +25,45 @@ function Navi() {
     navi('/');
   };
 
+  const handleClick = () => {
+    if (auth) setIsChatClicked(true);
+  };
+
+  const handleClickOff = () => {
+    setIsChatClicked(false);
+  };
+
   return (
     <>
-      {showModal && (
-        <Modal
-          modalType="logout"
-          modalHandler={handleModalShow}
-          logoutHandler={handleLogout}
-          modalMessage="로그아웃 하시겠습니까?"
-        />
-      )}
-      <div className={styles.nav}>
+      {showModal && <Modal modalType='logout' modalHandler={handleModalShow} logoutHandler={handleLogout} modalMessage='로그아웃 하시겠습니까?' />}
+      <div className={styles.container}>
         <nav>
           <div>
-            <Chat 
-              className={`${styles.btn} ${isChatClicked ? styles.active : ''}`} 
-              onClick={handleChatClick} 
-            />
+            <NavLink to='/color-pick' className={({ isActive, isPending }) => (isChatClicked ? styles.active : isActive ? styles.active : '')}>
+              <Chat className={styles.btn} onClick={handleClick} />
+            </NavLink>
           </div>
-          <div>
-            <div>
-              <Signup 
-                className={`${styles.btn} ${styles.top} ${isSignupClicked ? styles.active : ''}`} 
-                onClick={handleSignupClick} 
-              />
+          {!auth ? (
+            <div className={styles.user}>
+              <NavLink to='/signup' className={({ isActive, isPending }) => (isPending ? styles.inactive : isActive ? styles.active : '')}>
+                <Signup className={styles.btn} onClick={handleClickOff} />
+              </NavLink>
+
+              <NavLink to='/' className={({ isActive, isPending }) => (isPending ? styles.inactive : isActive ? styles.active : '')}>
+                <Login className={styles.btn} onClick={handleClickOff} />
+              </NavLink>
             </div>
-            <div>
-              <Login 
-                className={`${styles.btn} ${isLoginClicked ? styles.active : ''}`} 
-                onClick={handleLoginClick} 
-              />
+          ) : (
+            <div className={styles.user}>
+              <NavLink to='/collection' className={({ isActive, isPending }) => (isPending ? styles.inactive : isActive ? styles.active : '')}>
+                <Collection className={styles.btn} onClick={handleClickOff} />
+              </NavLink>
+
+              <button onClick={handleModalShow} value='logout'>
+                <Logout className={styles.btn} onClick={handleClickOff} />
+              </button>
             </div>
-          </div>
+          )}
         </nav>
       </div>
     </>

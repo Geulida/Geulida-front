@@ -10,6 +10,7 @@ import { setToken } from 'api/token';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navi = useNavigate();
 
   const handleLogin = async () => {
     try {
@@ -18,27 +19,27 @@ function Login() {
         setToken(response.token);
         navi('/color-pick');
       }
-    } catch (error: any) {
-      if (error.message === '400') {
-        alert('');
-      }
+    } catch (error) {
+      alert('존재하지 않는 회원입니다.');
     }
   };
 
-  const navi = useNavigate();
-
   return (
-    <div className={styles.container}>
-      <Headline title='Login' />
-      <LoginInput type='text' placeholder='ID' name='userId' onChange={(e) => setEmail(e.target.value)} />
-      <LoginInput type='password' placeholder='PASSWORD' name='password' onChange={(e) => setPassword(e.target.value)} />
-      <Button value='로그인' onClick={handleLogin} />
-      <Button
-        value='회원가입'
-        onClick={() => {
-          navi('/signup');
-        }}
-      />
+    <div className={styles.layout}>
+      <div className={styles.container}>
+        <Headline title='로그인' />
+        <LoginInput type='text' placeholder='ID' name='userId' onChange={(e) => setEmail(e.target.value)} />
+        <LoginInput type='password' placeholder='PASSWORD' name='password' onChange={(e) => setPassword(e.target.value)} />
+        <div>
+          <Button
+            value='회원가입'
+            onClick={() => {
+              navi('/signup');
+            }}
+          />
+          <Button value='로그인' onClick={handleLogin} />
+        </div>
+      </div>
     </div>
   );
 }

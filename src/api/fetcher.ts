@@ -34,6 +34,11 @@ async function userCollection(page: number) {
   const params = `collection?page=${page}`;
   return await Api.get(domain, params);
 }
+// Collection 삭제하기
+async function deleteCollection(_id: string) {
+  const params = `collection/${_id}`;
+  return await Api.delete(domain, params);
+}
 
 // 결과 저장하기
 async function saveIntoCollection(data: data) {
@@ -66,4 +71,4 @@ async function makeImage(color: string, style: string, summary: string) {
   return await Api.post(domain, 'img', data, true);
 }
 
-export { userLogin, userRegister, userCollection, saveIntoCollection, generateChat, summaryChat, makeImage };
+export { userLogin, userRegister, userCollection, deleteCollection, saveIntoCollection, generateChat, summaryChat, makeImage };

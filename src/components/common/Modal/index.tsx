@@ -28,22 +28,24 @@ function Modal({ modalHandler, modalMessage, modalType, logoutHandler, navigateH
             <Cancel onClick={closeModal} />
           </div>
         </div>
-        <div className={styles.modalMessage}>{modalMessage}</div>
-        {modalType === 'logout' && (
-          <button className={styles.confirmBtn} onClick={logoutHandler}>
-            로그아웃
-          </button>
-        )}
-        {modalType === 'confirm' && (
-          <button className={styles.confirmBtn} onClick={closeModal}>
-            확인 후 닫기
-          </button>
-        )}
-        {modalType === 'navigate' && (
-          <button className={styles.confirmBtn} onClick={navigateHandler}>
-            이동하기
-          </button>
-        )}
+        <div className={styles.msgContainer}>
+          <div className={styles.modalMessage}>{modalMessage}</div>
+          {modalType === 'logout' && (
+            <button className={styles.confirmBtn} onClick={logoutHandler}>
+              로그아웃
+            </button>
+          )}
+          {modalType === 'confirm' && (
+            <button className={styles.confirmBtn} onClick={closeModal}>
+              확인 후 닫기
+            </button>
+          )}
+          {modalType === 'navigate' && (
+            <button className={styles.confirmBtn} onClick={navigateHandler}>
+              이동하기
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

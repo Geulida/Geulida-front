@@ -6,6 +6,12 @@
   font-style: normal;
 }
 
+html {
+  /* 62.5% of 16px browser font size is 10px */
+  /* 16px * 0.625 = 10px */
+  font-size: 62.5%;
+}
+
 /* css reset */
 * {
   margin: 0;
@@ -30,7 +36,9 @@
   word-break: break-word;
   tab-size: 4;
 }
-
+body {
+  font-size: 1.6rem;
+}
 img,
 picture,
 video,
@@ -66,16 +74,8 @@ table {
 }
 
 body {
-  background: linear-gradient(45deg, #5ec5ce, #5991d1, #e5bdc6, #80bccc, #80a1cc, #e5bdc6, #80bccc);
-  background-size: 400% 400%;
-  animation: gradient 40s ease infinite;
+  background: #eee;
+  background: linear-gradient(0deg, rgba(0, 0, 200, 0.2), rgba(0, 0, 200, 0.1));
   background-repeat: no-repeat;
   background-attachment: fixed;
-}
-
-header {
-  width: 350px;
-  height: 100vh;
-  display: flex;
-  flex-shrink: 0;
 }

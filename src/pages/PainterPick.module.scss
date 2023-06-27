@@ -1,28 +1,34 @@
 .container {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   justify-items: center;
   align-items: center;
   flex-direction: row;
-  padding-right: 170px;
+  position: relative;
 }
 
 .painterPickerWrapper {
+  width: 66rem;
+  height: 70rem;
   display: flex;
-  flex-grow: 4;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 1rem;
+  padding: 0 5rem;
+  background: linear-gradient(170deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4));
+  border-radius: 0.8rem;
+  box-shadow: -15px -15px 30px rgba(255, 255, 255, 0.25), -1px -2px 2px rgba(255, 255, 255, 0.25), 15px 15px 30px rgba(101, 97, 134, 0.25);
 }
 
 .painterPickerCircle {
   position: relative;
-  width: 350px;
-  height: 350px;
+  width: 320px;
+  height: 320px;
   border-radius: 50%;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: -15px -15px 30px rgba(255, 255, 255, 0.25), -1px -1px 2px rgba(255, 255, 255, 0.5), 15px 15px 30px rgba(101, 97, 134, 0.4);
 
   /* image */
   background-size: cover;
@@ -32,51 +38,30 @@
 
 .question2 {
   margin-top: 50px;
-  font-weight: bold;
-  font-size: 40px;
+  font-weight: 600;
+  font-size: 26pt;
   color: white;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .notification {
-  color: gray;
-  margin-top: 10px;
+  color: #a2a8de;
 }
 
+.prevButton,
 .nextButton {
-  display: flex;
-  flex-grow: 0.5;
-  justify-content: flex-start;
-  align-items: center;
-  align-self: center;
-  background-color: transparent;
-  width: 50px;
-  height: 50px;
+  position: absolute;
 
-  .nextButton svg {
-    transition: all 0.2s;
+  & svg {
+    transition: all 0.4s;
   }
-
-  .nextButton:hover svg {
-    stroke: #e5bdc6;
+  &:hover svg {
+    stroke: #8085cc;
   }
 }
 
 .prevButton {
-  display: flex;
-  flex-grow: 0.5;
-  justify-content: flex-end;
-  align-items: center;
-  align-self: center;
-  background-color: transparent;
-  width: 50px;
-  height: 50px;
-
-  .prevButton svg {
-    transition: all 0.2s;
-  }
-
-  .prevButton:hover svg {
-    stroke: #e5bdc6;
-  }
+  left: 10rem;
+}
+.nextButton {
+  right: 10rem;
 }

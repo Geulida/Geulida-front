@@ -6,14 +6,13 @@
 }
 
 .right_container {
-
   height: 800px;
 
-  min-width: 1400px;
+  max-width: 1100px;
 
   margin: auto 20px;
 
-  background: rgba(255, 255, 255, 0.3);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 50px;
+  background: linear-gradient(170deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.4));
+  border-radius: 0.8rem;
+  box-shadow: -4px -4px 8px rgba(255, 255, 255, 0.1), -1px -1px 1px rgba(255, 255, 255, 0.3), 15px 15px 20px rgba(101, 97, 134, 0.25);
 }

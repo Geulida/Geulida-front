@@ -101,14 +101,16 @@ function Signup() {
   const isValidated = isValidatedName && isValidatedId && isValidatedPassword && isValidatedPasswordCheck;
 
   return (
-    <div className={styles.container}>
-      <Headline title='Signup' />
-      <div className={styles.form}>
-        <SignupInput type='text' name='userName' text='이름' onChange={handleValidateName} error={nameError} />
-        <SignupInput type='email' name='userId' text='ID' placeholder='example@gmail.com' onChange={handleValidateId} error={idError} />
-        <SignupInput type='password' name='userPassword' text='비밀번호' placeholder='영문자+숫자, 6자부터 20자까지' onChange={handleValidatePassword} error={passwordError} />
-        <SignupInput type='password' name='userPasswordCheck' text='비밀번호 확인' onChange={handleValidatePasswordCheck} error={passwordCheckError} />
-        <Button value='회원가입' disabled={!isValidated} onClick={handleSignup} />
+    <div className={styles.layout}>
+      <div className={styles.container}>
+        <Headline title='회원가입' />
+        <div className={styles.form}>
+          <SignupInput type='text' name='userName' text='이름' onChange={handleValidateName} error={nameError} />
+          <SignupInput type='email' name='userId' text='ID' placeholder='example@gmail.com' onChange={handleValidateId} error={idError} />
+          <SignupInput type='password' name='userPassword' text='비밀번호' placeholder='영문자+숫자, 6자부터 20자까지' onChange={handleValidatePassword} error={passwordError} />
+          <SignupInput type='password' name='userPasswordCheck' text='비밀번호 확인' onChange={handleValidatePasswordCheck} error={passwordCheckError} />
+          <Button value='회원가입' disabled={!isValidated} onClick={handleSignup} />
+        </div>
       </div>
     </div>
   );

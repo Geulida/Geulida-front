@@ -1,17 +1,30 @@
 .container {
+  width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .main {
-  width: 93%;
-  height: 100%;
-  margin-top: 50px;
-  // background-color: rgba($color: #ffffff, $alpha: 0.5);
+  width: 1000px;
+  min-height: 680px;
+  background: linear-gradient(170deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.4));
+  border-radius: 0.8rem;
+  box-shadow: -4px -4px 8px rgba(255, 255, 255, 0.1), -1px -1px 1px rgba(255, 255, 255, 0.3), 15px 15px 20px rgba(101, 97, 134, 0.25);
+
   display: flex;
   justify-content: space-between;
-  flex-shrink: 0;
+  align-items: center;
   flex-wrap: wrap;
+
+  .inactive {
+    margin: 0 auto;
+    font-size: 20pt;
+    font-weight: 600;
+    color: #8085cc;
+  }
 }
 
 .scrollContainer {

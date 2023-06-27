@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import Headline from 'components/common/Headline';
 import styles from './CollectionPage.module.scss';
 import CollectionItem from 'components/collection/CollectionItem';
 import { userCollection } from 'api/fetcher';
@@ -43,12 +42,11 @@ function CollectionPage() {
 
   return (
     <div className={styles.container}>
-      <Headline title='Collection' />
       <div className={styles.main}>
-        {collectionData.map((data) => (
-          <CollectionItem key={data._id} data={data} />
-        ))}
+        {collectionData && collectionData?.map((data) => <CollectionItem key={data._id} data={data} />)}
+        {collectionData.length <= 0 ? <div className={styles.inactive}>저장된 이미지가 없습니다.</div> : ''}
       </div>
+
       <div className={styles.scrollContainer}>
         <button onClick={scrollToTop} type='button'>
           TOP
