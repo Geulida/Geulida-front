@@ -2,16 +2,13 @@
   cursor: pointer;
 
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
 
-  width: 220px;
-  height: 70px;
-  font-size: 18px;
-  font-weight: bold;
-  color: white;
+  width: 90px;
+  height: 90px;
 
-  border-radius: 10px;
+  border-radius: 50%;
   background-color: #e5bdc6;
 
   transition: all 0.2s;
