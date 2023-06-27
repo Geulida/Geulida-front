@@ -2,16 +2,20 @@
   cursor: pointer;
 
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 
-  width: 90px;
-  height: 90px;
+  width: 220px;
+  height: 60px;
 
-  border-radius: 50%;
+  border-radius: 10px;
   background-color: #e5bdc6;
 
   transition: all 0.2s;
+
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
   &:hover {
     background-color: #e69dad;
     box-shadow: 1px 1.5px 4px rgba(0, 0, 0, 0.2);
@@ -19,6 +23,8 @@
 }
 
 .gallerySaveBtn svg {
+  width: 50px;
+  height: 50px;
   stroke: white;
   text-align: center;
 }

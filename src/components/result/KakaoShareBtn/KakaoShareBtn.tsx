@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { shareKakao } from './shareKakao';
+import { ReactComponent as KakaoIcon } from 'assets/Kakao.svg';
 
 import styles from './kakaoShareBtn.module.scss';
 
@@ -23,7 +24,8 @@ function KakaoShareBtn({ imageUrl, description }: KakaoShareBtnProps) {
     <>
       <button type='submit' onClick={() => shareKakao(description, imageUrl)}>
         <div className={styles.kakaoShareBtn}>
-          <img className={styles.kakaoIcon} src='/image/kakao-logo.png' alt='kakao-share-icon' />
+          <KakaoIcon className={styles.kakaoIcon} />
+          <p>카카오톡 공유</p>
         </div>
       </button>
     </>
