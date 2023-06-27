@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './resultPage.module.scss';
+import styles from './ResultPage.module.scss';
 
 import Modal from 'components/common/Modal';
-import KakaoShareBtn from '../../components/result/KakaoShareBtn';
-import GallerySaveBtn from '../../components/result/GallerySaveBtn';
-import ImageSaveBtn from '../../components/result/ImageSaveBtn';
+import KakaoShareBtn from 'components/result/KakaoShareBtn/KakaoShareBtn';
+import GallerySaveBtn from 'components/result/GallerySaveBtn';
+import ImageSaveBtn from 'components/result/ImageSaveBtn';
 
 interface data {
   color: string;
@@ -26,7 +26,6 @@ function ResultPage() {
   });
   const navigate = useNavigate();
 
-  const url = 'https://images.unsplash.com/photo-1684242269917-afdd589f20bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60';
   useEffect(() => {
     try {
       const getAnswerData = JSON.parse(sessionStorage.getItem('answerData') || '');
@@ -63,7 +62,7 @@ function ResultPage() {
       <div className={styles.resultPageContainer}>
         <section className={styles.resultContents}>
           <div className={styles.imageWrapper}>
-            <img src={storedData.url} alt='result image' />
+            <img src={storedData.url} alt='result' />
           </div>
           <div className={styles.resultContentsText}>{storedData.summary}</div>
         </section>

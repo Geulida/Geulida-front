@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './chatPage.module.scss';
+import styles from './InputContainer.module.scss';
 import { ReactComponent as Send } from 'assets/Send.svg';
 
 interface InputContainerProps {
@@ -10,6 +10,13 @@ interface InputContainerProps {
 }
 
 function InputContainer({ inputValue, isDisabled, handleInputChange, handleClick }: InputContainerProps) {
+  
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleClick();
+    }
+  };
+
   return (
     <div className={styles.inputContainer}>
       <input
@@ -20,6 +27,7 @@ function InputContainer({ inputValue, isDisabled, handleInputChange, handleClick
         maxLength={500}
         onChange={handleInputChange}
         disabled={isDisabled}
+        onKeyDown={handleKeyDown}
       />
 
       <button className={styles.button} onClick={handleClick} disabled={isDisabled} value='submit'>

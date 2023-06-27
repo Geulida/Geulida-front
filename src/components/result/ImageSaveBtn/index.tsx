@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import styles from './imageSaveBtn.module.scss';
 
 import { ReactComponent as Download } from 'assets/Download.svg';

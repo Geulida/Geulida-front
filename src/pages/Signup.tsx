@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router';
 import styles from './Signup.module.scss';
 import Button from 'components/common/Button/Button';
 import Headline from 'components/common/Headline';
-import SignupInput from './SignupInput';
-import { userRegister } from 'components/common/Fetcher/Fetcher';
+import SignupInput from 'components/user/SignupInput';
+import { userRegister } from 'api/fetcher';
 
 function Signup() {
   const navi = useNavigate();

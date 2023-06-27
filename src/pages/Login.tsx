@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import Headline from 'components/common/Headline';
-import LoginInput from './LoginInput';
+import LoginInput from '../components/user/LoginInput';
 import Button from 'components/common/Button/Button';
 import styles from './Login.module.scss';
-import { userLogin } from 'components/common/Fetcher/Fetcher';
-import { setToken } from 'components/common/Fetcher/Token';
-import axios from 'axios';
+import { userLogin } from 'api/fetcher';
+import { setToken } from 'api/token';
 
 function Login() {
   const [email, setEmail] = useState('');

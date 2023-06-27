@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import Headline from 'components/common/Headline';
 import styles from './CollectionPage.module.scss';
-import CollectionItem from './CollectionItem';
-import { userCollection } from 'components/common/Fetcher/Fetcher';
+import CollectionItem from 'components/collection/CollectionItem';
+import { userCollection } from 'api/fetcher';
 
 function CollectionPage() {
   const [collectionData, setCollectionData] = useState<any[]>([]);

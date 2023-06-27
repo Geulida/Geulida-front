@@ -1,5 +1,4 @@
-import React from 'react';
-import styles from './chatPage.module.scss';
+import styles from './Loading.module.scss';
 import { PulseLoader } from 'react-spinners';
 
 function Loading() {

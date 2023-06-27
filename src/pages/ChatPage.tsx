@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './chatPage.module.scss';
+import styles from './ChatPage.module.scss';
 import Layout from 'components/common/Layout';
 import Modal from 'components/common/Modal';
-import ProgressBar from './ProgressBar';
-import MessageContainer from './MessageContainer';
-import InputContainer from './InputContainer';
-import Loading from './Loading';
-import { generateChat, summaryChat, makeImage } from 'components/common/Fetcher/Fetcher';
+import ProgressBar from '../components/chat/ProgressBar';
+import MessageContainer from '../components/chat/MessageContainer';
+import InputContainer from '../components/chat/InputContainer';
+import Loading from '../components/chat/Loading';
+import { generateChat, summaryChat, makeImage } from 'api/fetcher';
 
-export interface Message {
+interface Message {
   id: number;
   content: string;
 }
@@ -42,7 +42,7 @@ function ChatPage() {
   const navigate = useNavigate();
 
   // 최대 대화 가능 횟수
-  const MAX_COUNT = 3;
+  const MAX_COUNT = 10;
 
   // 모달 핸들 함수
   function handleModalShow() {
@@ -104,13 +104,10 @@ function ChatPage() {
   // AI의 응답 받아오기
   async function generateAiResponse() {
     try {
-      console.log(totalMessage());
-
       const getTotalMsg = totalMessage();
       const aiResponse = (await generateChat(getTotalMsg)) as { message: string };
       const formattedAiResponse = aiResponse.message.replace(/AI: /g, '');
 
-      console.log(aiResponse);
       handleAddAiResponse(formattedAiResponse);
     } catch (error) {
       console.error('메세지 요청 에러');
@@ -120,13 +117,10 @@ function ChatPage() {
   // AI 대화 요약 받아오기
   async function summaryAiResponse() {
     try {
-      console.log(totalMessage());
-
       const getTotalMsg = totalMessage();
       const lastAiResponse = (await summaryChat(getTotalMsg)) as { message: string };
       const formattedAiResponse = lastAiResponse.message.replace(/AI: /g, '');
 
-      console.log('마지막 대화' + formattedAiResponse);
       handleAddAiResponse('To sum up your conversation,\n' + formattedAiResponse);
 
       return formattedAiResponse;
@@ -138,7 +132,6 @@ function ChatPage() {
   // 이미지 url 받아오기
   async function generateImageUrl() {
     try {
-      // hexcode 추가되어야 함
       const { color, style } = storedData;
       const summaryResponse = (await summaryAiResponse()) as string;
       const image = (await makeImage(color, style, summaryResponse)) as { url: string };
