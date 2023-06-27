@@ -37,7 +37,8 @@ nav {
   transition: all 0.5s;
   cursor: pointer;
   border-radius: 1rem;
-  &:hover {
+  &:hover, 
+  &.active {
     background: rgba(114, 97, 134, 0.25);
   }
 }

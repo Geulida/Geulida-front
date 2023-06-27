@@ -9,35 +9,72 @@ import { removeToken } from 'api/token';
 
 function Navi() {
   const navi = useNavigate();
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState(false);
+  const [isChatClicked, setIsChatClicked] = useState(false);
+  const [isSignupClicked, setIsSignupClicked] = useState(false);
+  const [isLoginClicked, setIsLoginClicked] = useState(false);
 
   const handleModalShow = () => {
     setShowModal((prev) => !prev);
   };
 
-  const handleClick = () => {
-    handleModalShow();
+  const handleChatClick = () => {
+    setIsChatClicked(true);
+    setIsSignupClicked(false);
+    setIsLoginClicked(false);
+    navi('/color-pick');
+  };
+
+  const handleSignupClick = () => {
+    setIsChatClicked(false);
+    setIsSignupClicked(true);
+    setIsLoginClicked(false);
+    navi('/signup');
+  };
+
+  const handleLoginClick = () => {
+    setIsChatClicked(false);
+    setIsSignupClicked(false);
+    setIsLoginClicked(true);
+    navi('/');
   };
 
   const handleLogout = () => {
+    handleModalShow();
     removeToken();
     navi('/');
   };
 
   return (
     <>
-      {showModal && <Modal modalType='logout' modalHandler={handleModalShow} logoutHandler={handleLogout} modalMessage='로그아웃 하시겠습니까?' />}
+      {showModal && (
+        <Modal
+          modalType="logout"
+          modalHandler={handleModalShow}
+          logoutHandler={handleLogout}
+          modalMessage="로그아웃 하시겠습니까?"
+        />
+      )}
       <div className={styles.nav}>
         <nav>
           <div>
-            <Chat className={styles.btn} />
+            <Chat 
+              className={`${styles.btn} ${isChatClicked ? styles.active : ''}`} 
+              onClick={handleChatClick} 
+            />
           </div>
           <div>
             <div>
-              <Signup className={`${styles.btn} ${styles.top}`} />
+              <Signup 
+                className={`${styles.btn} ${styles.top} ${isSignupClicked ? styles.active : ''}`} 
+                onClick={handleSignupClick} 
+              />
             </div>
             <div>
-              <Login className={styles.btn} onClick={handleClick} />
+              <Login 
+                className={`${styles.btn} ${isLoginClicked ? styles.active : ''}`} 
+                onClick={handleLoginClick} 
+              />
             </div>
           </div>
         </nav>
