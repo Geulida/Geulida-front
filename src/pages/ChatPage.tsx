@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './chatPage.module.scss';
+import styles from './ChatPage.module.scss';
 import Layout from 'components/common/Layout';
 import Modal from 'components/common/Modal';
 import ProgressBar from '../components/chat/ProgressBar';
@@ -9,7 +9,7 @@ import InputContainer from '../components/chat/InputContainer';
 import Loading from '../components/chat/Loading';
 import { generateChat, summaryChat, makeImage } from 'api/fetcher';
 
-export interface Message {
+interface Message {
   id: number;
   content: string;
 }

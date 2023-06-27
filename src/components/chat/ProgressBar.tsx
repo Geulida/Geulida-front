@@ -1,5 +1,4 @@
-import React from 'react';
-import styles from './chatPage.module.scss';
+import styles from './ProgressBar.module.scss';
 
 interface Props {
   count: number;

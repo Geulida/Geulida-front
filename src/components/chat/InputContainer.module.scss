@@ -1,0 +1,36 @@
+.inputContainer {
+  display: flex;
+  margin-top: 10px;
+}
+
+.input {
+  flex: 1;
+  height: 50px;
+  padding-left: 20px;
+
+  border-radius: 6px 0 0 6px;
+  outline: none;
+  border: none;
+}
+
+.button {
+  width: 80px;
+  height: 50px;
+  padding: 10px;
+  background-color: #ffffff;
+
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: #80a1cc;
+    svg {
+      stroke: #ffffff;
+    }
+  }
+}

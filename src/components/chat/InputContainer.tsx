@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './chatPage.module.scss';
+import styles from './InputContainer.module.scss';
 import { ReactComponent as Send } from 'assets/Send.svg';
 
 interface InputContainerProps {

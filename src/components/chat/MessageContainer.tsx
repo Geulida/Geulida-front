@@ -1,6 +1,10 @@
 import React from 'react';
-import styles from './chatPage.module.scss';
-import { Message } from '../../pages/ChatPage';
+import styles from './MessageContainer.module.scss';
+
+interface Message {
+  id: number;
+  content: string;
+}
 
 interface MessageContainerProps {
   aiMsg: Message[];
