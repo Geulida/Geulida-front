@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Headline from 'components/common/Headline';
 import styles from './CollectionPage.module.scss';
-import CollectionItem from './CollectionItem';
+import CollectionItem from './Collection/CollectionItem';
 import { userCollection } from 'api/fetcher';
 
 function CollectionPage() {

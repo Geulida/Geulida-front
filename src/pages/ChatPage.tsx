@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import styles from './chatPage.module.scss';
 import Layout from 'components/common/Layout';
 import Modal from 'components/common/Modal';
-import ProgressBar from './ProgressBar';
-import MessageContainer from './MessageContainer';
-import InputContainer from './InputContainer';
-import Loading from './Loading';
+import ProgressBar from '../components/chat/ProgressBar';
+import MessageContainer from '../components/chat/MessageContainer';
+import InputContainer from '../components/chat/InputContainer';
+import Loading from '../components/chat/Loading';
 import { generateChat, summaryChat, makeImage } from 'api/fetcher';
 
 export interface Message {

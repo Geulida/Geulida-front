@@ -6,10 +6,10 @@ import { GetColorName } from 'hex-color-to-color-name';
 
 import Modal from 'components/common/Modal';
 
-import styles from './colorPickPage.module.scss';
+import styles from './colorPick.module.scss';
 import { ReactComponent as RightArrow } from 'assets/RightArrow.svg';
 
-function ColorPickPage() {
+function ColorPick() {
   const [isShown, setIsShown] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [colorPickerHex, setColorPickerHex] = useState<string>('');
@@ -84,4 +84,4 @@ function ColorPickPage() {
   );
 }
 
-export default ColorPickPage;
+export default ColorPick;

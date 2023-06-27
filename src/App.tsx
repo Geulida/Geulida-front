@@ -2,12 +2,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import styles from './App.module.scss';
 import ResultPage from './pages/ResultPage';
-import ColorPickPage from './pages/ColorPickPage';
-import PainterPickPage from './pages/PainterPickPage';
-import CollectionPage from './pages/Collection/CollectionPage';
+import ColorPickPage from './pages/ColorPick';
+import PainterPickPage from './pages/PainterPick';
+import CollectionPage from './pages/CollectionPage';
 import Navi from './components/common/Navi';
-import Login from 'pages/Login/Login';
-import Signup from 'pages/Signup/Signup';
+import Login from 'pages/Login';
+import Signup from 'pages/Signup';
 import ChatPage from './pages/ChatPage';
 
 function App() {

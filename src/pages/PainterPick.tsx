@@ -5,12 +5,12 @@ import { ReactComponent as RightArrow } from 'assets/RightArrow.svg';
 import { ReactComponent as LeftArrow } from 'assets/LeftArrow.svg';
 
 import Modal from 'components/common/Modal';
-import CustomSelect from './CustomSelect';
+import CustomSelect from './PainterPickPage/CustomSelect';
 
-import styles from './painterPickPage.module.scss';
+import styles from './painterPick.module.scss';
 import artists from 'assets/painterData.json';
 
-function PainterPickPage() {
+function PainterPick() {
   const navigate = useNavigate();
   const PainterPickerRef = useRef<HTMLDivElement>(null);
   const [painterName, setPainterName] = useState<string>('');
@@ -73,4 +73,4 @@ function PainterPickPage() {
   );
 }
 
-export default PainterPickPage;
+export default PainterPick;

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import styles from './painterPickPage.module.scss';
+import styles from 'pages/painterPick.module.scss';
 import artists from 'assets/painterData.json';
 
 interface Props {
