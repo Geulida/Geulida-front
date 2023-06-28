@@ -1,17 +1,16 @@
 <div align="center" style="font-size:12pt">
 
-  <img src="https://raw.githubusercontent.com/Geulida/Geulida-front/dev/public/Geulida.ico" width="200">
+<img src="https://raw.githubusercontent.com/Geulida/Geulida-front/dev/public/Geulida.ico" width="200">
   
-  <b><span style="font-size: 150%">그리다(Geulida)</span></b>
-  <br />
-  <img src="https://img.shields.io/badge/2023.05.08~2023.05.28(기획,구현)-8085CC?style=flat-square&logoColor=white"/>
-  <br />
-  <img src="https://img.shields.io/badge/2023.06.27~2023.06.28(리팩토링)-8085CC?style=flat-square&logoColor=white"/> <br/>
-  “당신의 하루를 그림으로 그려드립니다.🎨”
-  <br />
-    <br/>
-    openAI를 활용하여 유저가 선호하는 색상과 화풍,<br/>
-    그리고 그 날 유저의 감정을 읽고 그림으로 그려주는 웹서비스,<br />그리다입니다.
+### 그리다(Geulida)
+<img src="https://img.shields.io/badge/2023.05.08~2023.05.28(기획,구현)-8085CC?style=flat-square&logoColor=white"/>
+<br />
+<img src="https://img.shields.io/badge/2023.06.27~2023.06.28(리팩토링)-8085CC?style=flat-square&logoColor=white"/> <br/>
+“당신의 하루를 그림으로 그려드립니다.🎨”
+<br />
+<br/>
+openAI를 활용하여 유저가 선호하는 색상과 화풍,<br/>
+그리고 그 날 유저의 감정을 읽고 그림으로 그려주는 웹서비스,<br />그리다입니다.
 </div>
 
 ### 서비스 기능
