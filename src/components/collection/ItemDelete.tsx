@@ -29,7 +29,7 @@ function ItemDelete(props: { bg: string, _id: string }) {
   }
 
   async function deleteImage(){
-    if (window.confirm('증말루 삭제하시겠습니까?')) {
+    if (window.confirm('이미지를 삭제하시겠습니까?')) {
       try {
         const response: any = await deleteCollection(props._id);
       } catch (error) {
