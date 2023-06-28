@@ -34,7 +34,7 @@ async function request<T>({ endpoint, method, params = '', data, requiresToken =
     return response.data;
   } catch (error: any) {
     if (error.response) {
-      const { status } = error.response;
+      const { status } = error.response.data;
       throw new Error(status);
     } else {
       throw new Error('요청이 실패하였습니다.');

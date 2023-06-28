@@ -15,12 +15,21 @@ function Login() {
   const handleLogin = async () => {
     try {
       const response: any = await userLogin(email, password);
+      console.log(response)
       if (response) {
         setToken(response.token);
         navi('/color-pick');
       }
     } catch (error) {
-      alert('존재하지 않는 회원입니다.');
+      console.log(error);
+      if (error instanceof Error && typeof error.message === 'string') {
+        switch (error.message) {
+          case '400': {
+            alert('존재하지 않는 회원입니다.');
+            break;
+          }
+        }
+      }
     }
   };
 
