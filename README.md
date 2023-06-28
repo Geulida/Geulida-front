@@ -6,7 +6,7 @@
 <img src="https://img.shields.io/badge/2023.05.08~2023.05.28(기획,구현)-8085CC?style=flat-square&logoColor=white"/>
 <br />
 <img src="https://img.shields.io/badge/2023.06.27~2023.06.28(리팩토링)-8085CC?style=flat-square&logoColor=white"/> <br/>
-“당신의 하루를 그림으로 그려드립니다.🎨”
+<b>“당신의 하루를 그림으로 그려드립니다.🎨”</b>
 <br />
 <br/>
 openAI를 활용하여 유저가 선호하는 색상과 화풍,<br/>
