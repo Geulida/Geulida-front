@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { ReactComponent as Delete } from 'assets/Delete.svg';
 import styles from './ItemDelete.module.scss';
+import { deleteCollection } from 'api/fetcher'
 
-function ItemDelete(props: { bg: string }) {
+function ItemDelete(props: { bg: string, _id: string }) {
   const [hovered, setHovered] = useState(false);
 
   const handleMouseOver = () => {
@@ -27,8 +28,17 @@ function ItemDelete(props: { bg: string }) {
     return `#${adjustedHex}`;
   }
 
+  async function deleteImage(){
+    if (window.confirm('증말루 삭제하시겠습니까?')) {
+      try {
+        const response: any = await deleteCollection(props._id);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
   return (
-    <button className={styles.btnContainer} style={{ backgroundColor: hovered ? getBtnColor(hexCode) : hexCode }} onMouseOver={handleMouseOver} onMouseOut={handleMouseOver}>
+    <button className={styles.btnContainer} style={{ backgroundColor: hovered ? getBtnColor(hexCode) : hexCode }} onMouseOver={handleMouseOver} onMouseOut={handleMouseOver} onClick={deleteImage}>
       <Delete />
     </button>
   );

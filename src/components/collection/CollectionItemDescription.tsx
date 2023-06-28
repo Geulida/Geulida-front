@@ -18,7 +18,7 @@ function CollectionItemDescription({ data }: CollectionItemProps) {
       <p>{data.color}</p>
       <p>{data.style}</p>
       <p className={styles.summary}>{data.summary}</p>
-      <ItemDelete bg={`${data.hexcode}`} />
+      <ItemDelete bg={`${data.hexcode}`} _id={data._id}/>
     </div>
   );
 }

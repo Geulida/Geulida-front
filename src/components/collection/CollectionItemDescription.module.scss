@@ -1,9 +1,4 @@
-@font-face {
-  font-family: 'PFStardust';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/PFStardust.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
+
 
 .picDescription {
   width: inherit;
@@ -17,6 +12,7 @@
   flex-shrink: 0;
   align-items: center;
   text-align: center;
+  padding: 0 2rem;
 
   p {
     color: white;
