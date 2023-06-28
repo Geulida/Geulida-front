@@ -32,6 +32,9 @@ function ItemDelete(props: { bg: string, _id: string }) {
     if (window.confirm('이미지를 삭제하시겠습니까?')) {
       try {
         const response: any = await deleteCollection(props._id);
+        if (response) {
+          window.location.reload();
+        }
       } catch (error) {
         console.log(error);
       }
