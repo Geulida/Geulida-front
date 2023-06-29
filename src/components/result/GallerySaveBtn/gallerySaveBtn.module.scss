@@ -2,23 +2,29 @@
   cursor: pointer;
 
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 
-  width: 90px;
-  height: 90px;
+  width: 200px;
+  height: 60px;
 
-  border-radius: 50%;
-  background-color: #e5bdc6;
+  border-radius: 10px;
+  background: #b1b6e4;
+  box-shadow: -4px -4px 10px rgba(255, 255, 255, 0.25), 4px 4px 10px rgba(101, 97, 134, 0.25), inset -3px -3px 3px rgba(101, 97, 134, 0.25);
 
-  transition: all 0.2s;
+  transition: all 0.5s ease;
+
+  font-size: 14pt;
+  font-weight: bold;
+  color: white;
   &:hover {
-    background-color: #e69dad;
-    box-shadow: 1px 1.5px 4px rgba(0, 0, 0, 0.2);
+    background: #8085cc;
   }
 }
 
 .gallerySaveBtn svg {
+  width: 30px;
+  height: 30px;
   stroke: white;
   text-align: center;
 }

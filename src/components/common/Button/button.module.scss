@@ -1,22 +1,21 @@
 .button {
   cursor: pointer;
-
-  width: 400px;
-  height: 70px;
+  width: 190px;
+  height: 60px;
 
   border: none;
   border-radius: 10px;
 
   color: #ffffff;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 13pt;
+  font-weight: 600;
   letter-spacing: 0.4em;
-  background: #e5bdc6;
+  background: #b1b6e4;
+  box-shadow: -4px -4px 10px rgba(255, 255, 255, 0.25), 4px 4px 10px rgba(101, 97, 134, 0.25), inset -3px -3px 3px rgba(101, 97, 134, 0.25);
 
   transition: all 0.5s ease;
 
   &:hover {
-    color: #80a1cc;
-    background-color: rgba($color: #ffffff, $alpha: 0.75);
+    background: #8085cc;
   }
 }

@@ -1,0 +1,25 @@
+.input {
+  box-sizing: border-box;
+  width: 400px;
+  height: 70px;
+
+  border: 2px solid #ffffff;
+  border-radius: 4rem;
+
+  color: #8085cc;
+  font-size: 16pt;
+  background-color: transparent;
+  outline: none;
+  padding-left: 30px;
+  transition: all 0.3s ease;
+  &:focus {
+    outline: none;
+    background: linear-gradient(170deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));
+
+    color: #8085cc;
+  }
+
+  &::placeholder {
+    color: #eeeeee;
+  }
+}

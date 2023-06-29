@@ -1,47 +1,59 @@
-.nav {
-  width: 350px;
+.container {
+  width: 20rem;
   height: 100vh;
 
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
+  flex-shrink: 0;
 }
 
 nav {
-  width: 30%;
-  height: 75%;
-  padding: 14% 0;
-
-  background-color: rgba(255, 255, 255, 0.25);
-  border-radius: 0.8rem;
-
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 
-  div {
+  width: 10rem;
+  height: 60%;
+  padding: 5rem 0;
+
+  background: linear-gradient(130deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.4));
+  border-radius: 0.8rem;
+  box-shadow: -15px -15px 30px rgba(255, 255, 255, 0.25), -1px -2px 2px rgba(255, 255, 255, 0.25), 15px 15px 30px rgba(101, 97, 134, 0.25);
+
+  a,
+  button {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+
+    transition: all 0.5s;
+    cursor: pointer;
+    border-radius: 1.25rem;
+    &:hover,
+    &.active {
+      background: #b1b6e4;
+      box-shadow: -4px -4px 10px rgba(255, 255, 255, 0.25), 4px 4px 10px rgba(101, 97, 134, 0.25);
+    }
+
+    svg {
+      width: 4rem;
+      height: 4rem;
+      stroke-width: 1.25;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
   }
 }
 
-.btn {
-  width: 70px;
-  height: 70px;
-  padding: 10px;
-
-  transition: all 0.5s;
-  cursor: pointer;
-  border-radius: 1rem;
-  &:hover {
-    background: rgba(114, 97, 134, 0.25);
-  }
-}
-
-.top {
-  margin-bottom: 40px;
+.user {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4rem;
 }

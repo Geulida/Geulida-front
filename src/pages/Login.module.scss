@@ -1,0 +1,30 @@
+.layout {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  width: 60rem;
+  height: 70rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 5rem;
+  background: linear-gradient(170deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4));
+  border-radius: 0.8rem;
+  box-shadow: -15px -15px 30px rgba(255, 255, 255, 0.25), -1px -2px 2px rgba(255, 255, 255, 0.25), 15px 15px 30px rgba(101, 97, 134, 0.25);
+  & > div:nth-child(2) {
+    margin-top: 20px;
+  }
+  & > div:nth-child(4) {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+}

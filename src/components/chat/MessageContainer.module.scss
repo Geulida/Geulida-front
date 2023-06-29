@@ -1,0 +1,54 @@
+.messageContainer {
+  width: 1000px;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    height: 30%;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+  }
+}
+
+.msgWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  & > p {
+    display: flex;
+    align-items: center;
+    color: #8085cc;
+    font-weight: 600;
+    & > svg {
+      stroke-width: 1.5;
+      stroke: #8085cc;
+    }
+  }
+}
+
+.aiMsg {
+  max-width: 700px;
+  background-color: #ffffff;
+  padding: 12px;
+  margin: 10px 0 10px 10px;
+  border-radius: 10px;
+}
+
+.userMsg {
+  max-width: 700px;
+  color: #ffffff;
+  background-color: #8085cc;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  align-self: flex-end;
+  margin-right: 10px;
+}
