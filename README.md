@@ -51,6 +51,7 @@ openAI를 활용하여 유저가 선호하는 색상과 화풍,<br/>
 <br /><br />
 <b>콜렉션</b><br /><br />
 ![콜렉션](https://github.com/Geulida/Geulida-front/assets/71072214/0c3b5bc4-1f0e-41a0-98ee-92097301a49a)
+<br />
 
 ## 기술스택
 |**Tech Stack**|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
