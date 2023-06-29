@@ -1,6 +1,6 @@
 <div align="center" style="font-size:12pt">
 
-<img src="https://github.com/Geulida/Geulida-front/assets/125162787/e7269260-c1c2-4770-bc18-bebf42ef3da0" width="800">
+<img alt="Geulida" src="https://github.com/Geulida/Geulida-front/assets/125162787/e7269260-c1c2-4770-bc18-bebf42ef3da0" width="800">
   
 ### 그리다(Geulida)
 
@@ -36,6 +36,22 @@ openAI를 활용하여 유저가 선호하는 색상과 화풍,<br/>
   <br />
   
 ## 기능 구현
+### API 문서
+  https://documenter.getpostman.com/view/26758081/2s93kxd6qs#27b7f42a-5755-49ca-a67a-eb2c6d1da442
+### 기능별 데모 영상
+  <div align="center">
+  <b>회원가입, 로그인</b> <br /><br />
+    <img alt="Sign-Up&Log-In" src="https://github.com/Geulida/Geulida-front/assets/125162787/e19edbe0-5c58-4e71-b34e-05dc790585aa">
+    <br /><br />
+  <b>채팅 기능</b><br /><br />
+    <img alt="Chat" src="https://github.com/Geulida/Geulida-front/assets/125162787/106e2d88-5e44-4ece-bc30-210c15f01ddc">
+    <br /><br />
+  <b>이미지 생성</b><br /><br />
+    <img alt="Create Image" src="https://github.com/Geulida/Geulida-front/assets/125162787/4101d5fd-b9ea-4881-b53d-16439d177124">
+    <br /><br />
+  <b>콜렉션</b><br /><br />
+    <img alt="Collection" src="https://github.com/Geulida/Geulida-front/assets/125162787/40cf1c98-24c3-4b68-bd1e-30907eab9fc5"> <br />
+  </div>
   <br />
   
 ## 기술스택
@@ -85,15 +101,15 @@ openAI를 활용하여 유저가 선호하는 색상과 화풍,<br/>
         <tr>
         <th>담당</th>
          <td width="100" align="center">
-                색상 팔레트 선택, 화풍 선택, 결과 페이지 구현 / 카카오톡 공유
+                색상 팔레트 선택, 화풍 선택, 결과 페이지 구현 / 갤러리 저장 API 연동 / 카카오톡 공유
             </a>
         </td>
         <td width="100" align="center">
-                혜지
+                채팅 페이지 / 채팅 API 및 이미지 생성 API 연동 / 네비게이션 컴포넌트
             </a>
         </td>
         <td width="100" align="center">
-               로그인, 회원가입, 콜렉션 페이지 구현 / 추상화된 api method 함수 생성
+               로그인, 회원가입, 콜렉션 페이지 구현 / 로그인 및 회원가입, 콜렉션 API 연동 / 레이아웃 css
             </a>
         </td>
         <td width="100" align="center">
@@ -105,7 +121,7 @@ openAI를 활용하여 유저가 선호하는 색상과 화풍,<br/>
             </a>
         </td>
         <td width="100" align="center">
-              경진님
+              로그인 API, 회원가입 API
             </a>
         </td>
     </tr>
